@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.main--sidebar {
+    width: 20vw;
+    padding: 0 20px;
+    background-color: aliceblue;
+}
+.formrow--container{
+    display: flex;
+    flex-direction: column;
+}
+.user--image {
+    height: 200px;
+    width: 200px;
+    border-radius: 200px;
+}
+
+.user--name {
+    font-size: 32px;
+}
