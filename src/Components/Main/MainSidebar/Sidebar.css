@@ -1,0 +1,41 @@
+.main--sidebar {
+  width: 20vw;
+  padding: 0 20px;
+  background-color: aliceblue;
+}
+.formrow--container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.user--image {
+  height: 175px;
+  width: 175px;
+  border-radius: 200px;
+}
+
+.main--sidebar input {
+  font-size: 14px;
+  padding: 8px;
+  margin: 8px 0;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+}
+
+.sidebar--form--container .formrow--container:first-of-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+.sidebar--form--container .formrow--container:first-of-type input.user--name {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.formrow--container .formrow--title {
+  font-size: 18px;
+  border-bottom: 1px solid black;
+  line-height: 24px;
+  margin-bottom: 15px;
+}

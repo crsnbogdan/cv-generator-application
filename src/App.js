@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import uniqid from "uniqid";
 import "./App.css";
+import Sidebar from "./Components/Main/MainSidebar/MainSidebar";
 import Nav from "./Components/Nav/Nav";
-import "./Components/Nav/Nav.css";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -19,20 +21,35 @@ class App extends Component {
           github: "",
         },
       },
+      main: {
+        topform: {
+          summary: "",
+          skills: [],
+          skill: {
+            skillname: "",
+            key: uniqid(),
+          },
+        },
+      },
       file: null,
     };
     this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmitToSkillsList = this.onSubmitToSkillsList.bind(this);
     this.onImgUpload = this.onImgUpload.bind(this);
     this.onEmailInput = this.onEmailInput.bind(this);
     this.onPhoneNumberInput = this.onPhoneNumberInput.bind(this);
     this.onLinkedinInput = this.onLinkedinInput.bind(this);
     this.onGitHubInput = this.onGitHubInput.bind(this);
+    this.onSummaryInput = this.onSummaryInput.bind(this);
+    this.onInputSkill = this.onInputSkill.bind(this);
   }
 
   switchMode = (e) =>
     e.target.checked
       ? this.setState({ mode: "previewing" })
       : this.setState({ mode: "editing" });
+
+  // sidebar methods
   onNameInputUpdate = (e) =>
     this.setState({
       sidebar: {
@@ -42,6 +59,7 @@ class App extends Component {
         },
         bottomRow: this.state.sidebar.bottomRow,
       },
+      main: this.state.main,
     });
   onImgUpload = (e) =>
     this.setState({
@@ -52,9 +70,8 @@ class App extends Component {
         },
         bottomRow: this.state.sidebar.bottomRow,
       },
+      main: this.state.main,
     });
-
-  // sidebar contact section functions here
   onEmailInput = (e) =>
     this.setState({
       sidebar: {
@@ -67,6 +84,7 @@ class App extends Component {
           address: this.state.sidebar.bottomRow.address,
         },
       },
+      main: this.state.main,
     });
   onPhoneNumberInput = (e) =>
     this.setState({
@@ -80,8 +98,8 @@ class App extends Component {
           address: this.state.sidebar.bottomRow.address,
         },
       },
+      main: this.state.main,
     });
-
   onLinkedinInput = (e) =>
     this.setState({
       sidebar: {
@@ -94,6 +112,7 @@ class App extends Component {
           address: this.state.sidebar.bottomRow.address,
         },
       },
+      main: this.state.main,
     });
   onGitHubInput = (e) =>
     this.setState({
@@ -107,8 +126,9 @@ class App extends Component {
           address: this.state.sidebar.bottomRow.address,
         },
       },
+      main: this.state.main,
     });
-  onAddressInput = (e) => {
+  onAddressInput = (e) =>
     this.setState({
       sidebar: {
         topRow: this.state.sidebar.topRow,
@@ -120,10 +140,59 @@ class App extends Component {
           address: e.target.value,
         },
       },
+      main: this.state.main,
+    });
+
+  // main top form methods
+  onSummaryInput = (e) => {
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: {
+          summary: e.target.value,
+          skills: this.state.main.topform.skills,
+          skill: this.state.main.topform.skill,
+        },
+      },
     });
     console.log(this.state);
   };
+
+  onInputSkill = (e) =>
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: {
+          summary: this.state.main.topform.summary,
+          skills: this.state.main.topform.skills,
+          skill: {
+            skillname: e.target.value,
+            key: this.state.main.topform.skill.key,
+          },
+        },
+      },
+    });
+
   onSubmit = (e) => e.preventDefault();
+  onSubmitToSkillsList = (e) => {
+    e.preventDefault();
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: {
+          skills: this.state.main.topform.skills.concat(
+            this.state.main.topform.skill
+          ),
+          skill: {
+            skillname: this.state.main.topform.skill.skillname,
+            key: uniqid(),
+          },
+          summary: this.state.main.topform.summary,
+        },
+      },
+    });
+    console.log(this.state);
+  };
 
   render() {
     return (
@@ -213,7 +282,41 @@ class App extends Component {
               </form>
             </div>
           </div>
-          <div className="main-app"></div>
+          <div className="main-app">
+            <div className="main--form">
+              <form action="" onSubmit={this.onSubmitToSkillsList}>
+                <div className="form--toprow">
+                  <p className="formrow--title">Summary</p>
+                  <input
+                    type="textarea"
+                    required
+                    className="user--summary"
+                    placeholder="Tell us about yourself"
+                    onInput={this.onSummaryInput}
+                  />
+                </div>
+                <div className="form--bottomrow">
+                  <p className="formrow--title">Skills</p>
+                  <input
+                    type="text"
+                    required
+                    className="user--skills"
+                    placeholder="Add a skill"
+                    value={this.state.main.topform.skill.skillname}
+                    onInput={this.onInputSkill}
+                  />
+                  <button type="submit">Add</button>
+                  <div className="skills">
+                    <ul>
+                      {this.state.main.topform.skills.map((skill) => (
+                        <li>{skill.skillname}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
         <div className="footer"></div>
       </div>
