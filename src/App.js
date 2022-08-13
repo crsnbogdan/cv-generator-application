@@ -196,11 +196,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="nav">
-          <div className="navtext--container">
-            <h1>CV Generator</h1>
-            <p>Currently {this.state.mode}</p>
-          </div>
+        <div className="nav flex justify-between items-center px-20 bg-white">
+          {this.state.mode == "editing" ? (
+            <div className="navtext">
+              <h1 className="font-bold text-3xl text-green-400">
+                CV Generator
+              </h1>
+              <p className="my-1 text-l text-gray-400">Currently editing</p>
+            </div>
+          ) : (
+            <div className="navtext">
+              <h1 className="font-bold text-3xl text-gray-400">CV Generator</h1>
+              <p className="my-1 text-l text-green-400">Currently editing</p>
+            </div>
+          )}
           <div className="modetoggle">
             <input type="checkbox" id="switch" onChange={this.switchMode} />
             <label htmlFor="switch" className="switchLabel">
@@ -208,44 +217,49 @@ class App extends Component {
             </label>
           </div>
         </div>
-        <div className="main">
-          <div className="main--sidebar">
+        <div className="main bg-green-400 flex">
+          <div className="main--sidebar w-1/5 p-10 bg-white">
             <div className="sidebar--form--container">
               <form action="" className="sidebar--form">
-                <div className="formrow--container">
+                <div className="flex flex-col align-center mb-32">
                   <input
                     type="text"
                     value={this.state.sidebar.topRow.name}
                     onChange={this.onNameInputUpdate}
                     placeholder="Your name*"
-                    className="user--name"
+                    className="user--name bg-gray-200 p-1 rounded-tl-full rounded-bl-full px-4 text-lg mb-5"
                     required
-                    minLength={7}
+                    maxlength="20"
                   />
                   {this.state.sidebar.topRow.imgFile ? null : (
-                    <input type="file" onChange={this.onImgUpload} required />
+                    <input
+                      type="file"
+                      onChange={this.onImgUpload}
+                      required
+                      className="self-center"
+                    />
                   )}
                   {this.state.sidebar.topRow.imgFile ? (
                     <img
                       src={this.state.sidebar.topRow.imgFile}
-                      className="user--image"
+                      className="user--image mt-12 self-center"
                       required
                     />
                   ) : (
                     <img
                       src={this.state.sidebar.topRow.imgFile}
-                      className="user--image"
+                      className="user--image mt-12 self-center"
                       required
                       style={{ visibility: "hidden" }}
                     />
                   )}
                 </div>
-                <div className="formrow--container">
-                  <p className="formrow--title">Contact</p>
+                <div className="flex align-center flex-col">
+                  <p className="formrow--title float-right">Contact</p>
                   <input
                     type="email"
                     required
-                    className="user--email user--contactinput"
+                    className="user--email bg-gray-200 p-1 rounded-tl-full rounded-bl-full px-4 text-lg mb-5"
                     placeholder="your@email.com*"
                     minLength={7}
                     onInput={this.onEmailInput}
@@ -253,7 +267,7 @@ class App extends Component {
                   <input
                     type="tel"
                     required
-                    className="user--number user--contactinput"
+                    className="user--number bg-gray-200 p-1 rounded-tl-full rounded-bl-full px-4 text-lg mb-5"
                     placeholder="0123 456 789*"
                     pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}"
                     maxLength={10}
@@ -262,21 +276,21 @@ class App extends Component {
                   <input
                     type="url"
                     required
-                    className="user--linkedin user--contactinput"
+                    className="user--linkedin bg-gray-200 p-1 rounded-tl-full rounded-bl-full px-4 text-lg mb-5"
                     placeholder="Linkedin"
                     onInput={this.onLinkedinInput}
                   />
                   <input
                     type="url"
                     required
-                    className="user--github user--contactinput"
+                    className="user--github user--contactinput bg-gray-200 p-1 rounded-tl-full rounded-bl-full px-4 text-lg mb-5"
                     placeholder="GitHub"
                     onInput={this.onGitHubInput}
                   />
                   <input
                     type="text"
                     required
-                    className="user--address user--contactinput"
+                    className="user--address bg-gray-200 p-1 rounded-tl-full rounded-bl-full px-4 text-lg"
                     placeholder="Address"
                     onInput={this.onAddressInput}
                   />
@@ -284,16 +298,16 @@ class App extends Component {
               </form>
             </div>
           </div>
-          <div className="main--app">
+          <div className="main--app flex">
             <div className="main--topform">
               <form action="" onSubmit={this.onSubmitToSkillsList}>
-                <div className="form--toprow form--formrow">
+                <div className="">
                   <p className="formrow--title">Summary</p>
                   <textarea
                     rows="3"
                     cols="115"
                     required
-                    className="user--summary"
+                    className="user--summary resize-none"
                     placeholder="Tell us about yourself"
                     onInput={this.onSummaryInput}
                     maxLength="280"
