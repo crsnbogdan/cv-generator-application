@@ -10,8 +10,150 @@
 .main--sidebar {
   min-height: 90vh;
 }
+.main {
+  background-color: aliceblue;
+}
 
-/* main*/
+/* sidebar--formpage*/
+input[type="checkbox"] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+label.switchLabel {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 200px;
+  height: 100px;
+  background: grey;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+label.switchLabel:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 90px;
+  height: 90px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+input:checked + label.switchLabel {
+  background: #bada55;
+}
+
+input:checked + label.switchLabel:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+label.switchLabel:active:after {
+  width: 130px;
+}
+label.switchLabel,
+input#switch {
+  transform: scale(0.3);
+}
+
+.nav {
+  height: 10vh;
+  padding: 0 50px;
+  display: flex;
+  background-color: rgb(173, 202, 227);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navtext--container h1 {
+  text-transform: uppercase;
+  font-size: 24px;
+}
+.navtext--container p {
+  margin-top: 5px;
+  text-transform: lowercase;
+  font-size: 14px;
+}
+.nav .modetoggle {
+  max-width: 130px;
+  transform: translateY(-10px);
+}
+
+.main--sidebar {
+  width: 20vw;
+  padding: 0 20px;
+  background-color: aliceblue;
+}
+.formrow--container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.user--image {
+  height: 175px;
+  width: 175px;
+  border-radius: 200px;
+}
+
+input,
+textarea {
+  font-size: 14px;
+  padding: 8px;
+  margin: 8px 0;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+}
+
+.sidebar--form--container .formrow--container:first-of-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+.sidebar--form--container .formrow--container:first-of-type input.user--name {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.formrow--title {
+  font-size: 18px;
+  border-bottom: 1px solid black;
+  line-height: 24px;
+  margin-bottom: 15px;
+}
+
+/* main--formpage*/
 .main {
   display: flex;
+}
+.main .main--app {
+  width: 100%;
+}
+
+/*main--formpage--topform*/
+
+.main--topform {
+  padding: 30px 50px;
+}
+
+.main--topform .form--formrow {
+  margin: 20px 0;
+}
+.skillsform--userinput {
+  display: flex;
+  height: 100px;
+}
+.userinput--list {
+  display: grid;
+  grid-template-columns: 150px 150px 150px 150px;
+  list-style-type: none;
+}
+
+textarea {
+  resize: none;
 }

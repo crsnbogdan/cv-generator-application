@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import "./App.css";
-import Sidebar from "./Components/Main/MainSidebar/MainSidebar";
-import Nav from "./Components/Nav/Nav";
 
 class App extends Component {
   constructor(props) {
@@ -176,6 +174,7 @@ class App extends Component {
   onSubmit = (e) => e.preventDefault();
   onSubmitToSkillsList = (e) => {
     e.preventDefault();
+    if (this.state.main.topform.skills.length >= 12) return;
     this.setState({
       sidebar: this.state.sidebar,
       main: {
@@ -198,7 +197,10 @@ class App extends Component {
     return (
       <div className="App">
         <div className="nav">
-          <Nav mode={this.state.mode} />
+          <div className="navtext--container">
+            <h1>CV Generator</h1>
+            <p>Currently {this.state.mode}</p>
+          </div>
           <div className="modetoggle">
             <input type="checkbox" id="switch" onChange={this.switchMode} />
             <label htmlFor="switch" className="switchLabel">
@@ -282,20 +284,22 @@ class App extends Component {
               </form>
             </div>
           </div>
-          <div className="main-app">
-            <div className="main--form">
+          <div className="main--app">
+            <div className="main--topform">
               <form action="" onSubmit={this.onSubmitToSkillsList}>
-                <div className="form--toprow">
+                <div className="form--toprow form--formrow">
                   <p className="formrow--title">Summary</p>
-                  <input
-                    type="textarea"
+                  <textarea
+                    rows="3"
+                    cols="115"
                     required
                     className="user--summary"
                     placeholder="Tell us about yourself"
                     onInput={this.onSummaryInput}
+                    maxLength="280"
                   />
                 </div>
-                <div className="form--bottomrow">
+                <div className="form--bottomrow form--formrow">
                   <p className="formrow--title">Skills</p>
                   <input
                     type="text"
@@ -306,10 +310,10 @@ class App extends Component {
                     onInput={this.onInputSkill}
                   />
                   <button type="submit">Add</button>
-                  <div className="skills">
-                    <ul>
+                  <div className="skillsform--userinput">
+                    <ul className="userinput--list">
                       {this.state.main.topform.skills.map((skill) => (
-                        <li>{skill.skillname}</li>
+                        <li className="userinput--skill">{skill.skillname}</li>
                       ))}
                     </ul>
                   </div>
