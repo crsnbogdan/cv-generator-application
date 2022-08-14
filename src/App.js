@@ -197,17 +197,19 @@ class App extends Component {
     return (
       <div className="App">
         <div className="nav flex justify-between items-center px-20 bg-white">
-          {this.state.mode == "editing" ? (
+          {this.state.mode === "editing" ? (
             <div className="navtext">
               <h1 className="font-bold text-3xl text-green-400">
                 CV Generator
               </h1>
-              <p className="my-1 text-l text-gray-400">Currently editing</p>
+              <p className="my-1 text-lg text-gray-400">Currently editing</p>
             </div>
           ) : (
             <div className="navtext">
               <h1 className="font-bold text-3xl text-gray-400">CV Generator</h1>
-              <p className="my-1 text-l text-green-400">Currently editing</p>
+              <p className="my-1 text-lg text-green-400">
+                Currently previewing
+              </p>
             </div>
           )}
           <div className="modetoggle">
@@ -221,7 +223,7 @@ class App extends Component {
           <div className="main--sidebar w-1/5 p-10 bg-white">
             <div className="sidebar--form--container">
               <form action="" className="sidebar--form">
-                <div className="flex flex-col align-center mb-32">
+                <div className="flex flex-col align-center mb-5 justify-center">
                   <input
                     type="text"
                     value={this.state.sidebar.topRow.name}
@@ -232,30 +234,44 @@ class App extends Component {
                     maxlength="20"
                   />
                   {this.state.sidebar.topRow.imgFile ? null : (
-                    <input
-                      type="file"
-                      onChange={this.onImgUpload}
-                      required
-                      className="self-center"
-                    />
+                    <div className="flex align-center justify-center">
+                      <input
+                        type="file"
+                        name="uploadfile"
+                        id="img"
+                        onChange={this.onImgUpload}
+                        style={{ display: "none" }}
+                        accept=".jpg,.jpeg"
+                      />
+                      <label
+                        for="img"
+                        className="bg-green-300 text-white px-6 py-3 text-lg rounded-full"
+                      >
+                        Upload an image
+                      </label>
+                    </div>
                   )}
                   {this.state.sidebar.topRow.imgFile ? (
-                    <img
-                      src={this.state.sidebar.topRow.imgFile}
-                      className="user--image mt-12 self-center"
+                    <div
+                      style={{
+                        backgroundImage: `url(${this.state.sidebar.topRow.imgFile})`,
+                      }}
+                      className="user--image mt-5 py-1 px-4 self-center userinput--profileimg"
                       required
                     />
                   ) : (
-                    <img
-                      src={this.state.sidebar.topRow.imgFile}
-                      className="user--image mt-12 self-center"
+                    <div
+                      input={this.state.sidebar.topRow.imgFile}
+                      className="user--image mt-5 self-center"
                       required
                       style={{ visibility: "hidden" }}
                     />
                   )}
                 </div>
-                <div className="flex align-center flex-col">
-                  <p className="formrow--title float-right">Contact</p>
+                <div className="flex flex-col">
+                  <p className="formrow--title text-lg float-right text-end mb-5">
+                    Contact
+                  </p>
                   <input
                     type="email"
                     required

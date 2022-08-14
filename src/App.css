@@ -71,10 +71,19 @@ input#switch {
   transform: translateY(-10px);
 }
 
+.formrow--title {
+  float: right;
+  border-bottom: 2px solid black;
+}
+
 .user--image {
-  height: 280px;
-  width: 280px;
-  border-radius: 200px;
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+}
+.userinput--profileimg {
+  background-position: center;
+  background-size: 100% 100%;
 }
 
 /*main--formpage--topform*/
