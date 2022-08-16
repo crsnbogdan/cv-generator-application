@@ -14,12 +14,13 @@
   min-height: 90vh;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   outline: none;
 }
 
 /* sidebar--formpage*/
-input[type="checkbox"] {
+input[type="checkbox"]:not(#job--noenddate) {
   height: 0;
   width: 0;
   visibility: hidden;
@@ -48,11 +49,11 @@ label.switchLabel:after {
   transition: 0.3s;
 }
 
-input:checked + label.switchLabel {
+input:checked:not(#job--noenddate) + label.switchLabel {
   background: #4ade80;
 }
 
-input:checked + label.switchLabel:after {
+input:checked:not(#job--noenddate) + label.switchLabel:after {
   left: calc(100% - 5px);
   transform: translateX(-100%);
 }
@@ -72,32 +73,19 @@ input#switch {
 }
 
 .formrow--title {
-  float: right;
   border-bottom: 2px solid black;
 }
-
-.user--image {
-  height: 200px;
-  width: 200px;
-  border-radius: 100%;
+.formrow--title.bordbot--none {
+  border-bottom: none !important;
 }
-.userinput--profileimg {
-  background-position: center;
-  background-size: 100% 100%;
+
+.user--imagecontainer {
+  background-size: cover;
 }
 
 /*main--formpage--topform*/
 
-.main--topform {
-  padding: 30px 50px;
-}
-
-.skillsform--userinput {
-  display: flex;
-  height: 100px;
-}
 .userinput--list {
-  display: grid;
   grid-template-columns: 150px 150px 150px 150px;
-  list-style-type: none;
+  list-style: initial;
 }

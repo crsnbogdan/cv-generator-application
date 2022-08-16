@@ -1,22 +1,22 @@
 /*
 structure:
-    nav bar: - STANDALONE COMPONENT
+    nav bar: - STANDALONE COMPONENT  - DONE
         -title for the app
         - toggle between edit mode and preview
 
     main: - STANDALONE COMPONENT
-        - sidebar: - STANDALONE COMPONENT
+        - sidebar: - STANDALONE COMPONENT  - DONE
             - name * required
             - image * required
-            - contact information ( conditionally rendered ):
+            - contact information ( conditionally rendered ):  - DONE
                 - email address * required
                 - prone number * required
                 - linkedin ( conditionally rendered )
                 - github ( conditionally rendered )
                 - address ( conditionally rendered )
         - body: - STANDALONE COMPONENT
-            - summary * required
-            - skills ( unordered list ) *required
+            - summary * required - DONE
+            - skills ( unordered list ) *required  - DONE
             - work experience * required
                 - job(s):
                     - position * required
