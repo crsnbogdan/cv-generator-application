@@ -29,7 +29,38 @@ class App extends Component {
           },
         },
         middleform: {
-          jobs: [],
+          jobs: [
+            {
+              title: "Sales Manager",
+              company: "My.Co",
+              startdate: {
+                month: "May",
+                year: "2020",
+              },
+              enddate: {
+                ongoing: true,
+                month: "",
+                year: "",
+              },
+              description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, error! Voluptatem culpa est illo aut accusamus vitae iusto. Modi tenetur, temporibus officiis itaque ratione minus omnis tempore id illo deserunt adipisci nulla debitis necessitatibus maiores deleniti error non ipsa dolorum aperiam nemo animi ab corrupti. Perspiciatis dicta tempora voluptate id veritatis doloribus ab pariatur illum. Rerum, doloremque in porro pariatur aspernatur unde vero, eum laboriosam non ducimus aut eius dolorum voluptates culpa vel? Sit aliquam, ipsam eum aperiam sint commodi!`,
+              key: uniqid(),
+            },
+            {
+              title: "Sales Manager",
+              company: "My.Co",
+              startdate: {
+                month: "May",
+                year: "2020",
+              },
+              enddate: {
+                ongoing: true,
+                month: "",
+                year: "",
+              },
+              description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, error! Voluptatem culpa est illo aut accusamus vitae iusto. Modi tenetur, temporibus officiis itaque ratione minus omnis tempore id illo deserunt adipisci nulla debitis necessitatibus maiores deleniti error non ipsa dolorum aperiam nemo animi ab corrupti. Perspiciatis dicta tempora voluptate id veritatis doloribus ab pariatur illum. Rerum, doloremque in porro pariatur aspernatur unde vero, eum laboriosam non ducimus aut eius dolorum voluptates culpa vel? Sit aliquam, ipsam eum aperiam sint commodi!`,
+              key: uniqid(),
+            },
+          ],
           job: {
             title: "",
             company: "",
@@ -60,6 +91,12 @@ class App extends Component {
     this.onSkillInput = this.onSkillInput.bind(this);
     this.onTitleInput = this.onTitleInput.bind(this);
     this.onCompanyInput = this.onCompanyInput.bind(this);
+    this.onStartMonthInput = this.onStartMonthInput.bind(this);
+    this.onStartYearInput = this.onStartYearInput.bind(this);
+    this.onJobOngoingCheckboxInput = this.onJobOngoingCheckboxInput.bind(this);
+    this.onEndMonthInput = this.onEndMonthInput.bind(this);
+    this.onEndYearInput = this.onEndYearInput.bind(this);
+    this.onCompanyDescriptionInput = this.onCompanyDescriptionInput.bind(this);
   }
 
   switchMode = (e) =>
@@ -124,7 +161,7 @@ class App extends Component {
         topRow: this.state.sidebar.topRow,
         bottomRow: {
           email: this.state.sidebar.bottomRow.email,
-          phoneNumber: this.state.sidebar.bottomRow.email,
+          phoneNumber: this.state.sidebar.bottomRow.phoneNumber,
           linkedin: e.target.value,
           github: this.state.sidebar.bottomRow.github,
           address: this.state.sidebar.bottomRow.address,
@@ -204,6 +241,9 @@ class App extends Component {
           job: {
             title: e.target.value,
             company: this.state.main.middleform.job.company,
+            startdate: this.state.main.middleform.job.startdate,
+            enddate: this.state.main.middleform.job.enddate,
+            description: this.state.main.middleform.job.description,
           },
         },
       },
@@ -218,12 +258,145 @@ class App extends Component {
           job: {
             title: this.state.main.middleform.job.title,
             company: e.target.value,
+            startdate: this.state.main.middleform.job.startdate,
+            enddate: this.state.main.middleform.job.enddate,
+            description: this.state.main.middleform.job.description,
+          },
+        },
+      },
+    });
+  onStartMonthInput = (e) =>
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: {
+          jobs: this.state.main.middleform.jobs || [],
+          job: {
+            title: this.state.main.middleform.job.title,
+            company: this.state.main.middleform.job.company,
+            startdate: {
+              month: e.target.value,
+              year: this.state.main.middleform.job.startdate.year,
+            },
+            enddate: this.state.main.middleform.job.enddate,
+            description: this.state.main.middleform.job.description,
+          },
+        },
+      },
+    });
+  onStartYearInput = (e) =>
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: {
+          jobs: this.state.main.middleform.jobs || [],
+          job: {
+            title: this.state.main.middleform.job.title,
+            company: this.state.main.middleform.job.company,
+            startdate: {
+              month: this.state.main.middleform.job.startdate.month,
+              year: e.target.value,
+            },
+            enddate: this.state.main.middleform.job.enddate,
+            description: this.state.main.middleform.job.description,
+          },
+        },
+      },
+    });
+  onJobOngoingCheckboxInput = (e) =>
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: {
+          jobs: this.state.main.middleform.jobs || [],
+          job: {
+            title: this.state.main.middleform.job.title,
+            company: this.state.main.middleform.job.company,
+            startdate: {
+              month: this.state.main.middleform.job.startdate.month,
+              year: this.state.main.middleform.job.startdate.year,
+            },
+            enddate: {
+              ongoing: e.target.checked,
+              month: this.state.main.middleform.job.enddate.month,
+              year: this.state.main.middleform.job.enddate.year,
+            },
+            description: this.state.main.middleform.job.description,
+          },
+        },
+      },
+    });
+  onEndMonthInput = (e) =>
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: {
+          jobs: this.state.main.middleform.jobs || [],
+          job: {
+            title: this.state.main.middleform.job.title,
+            company: this.state.main.middleform.job.company,
+            startdate: this.state.main.middleform.job.startdate,
+            enddate: {
+              ongoing: this.state.main.middleform.job.enddate.ongoing,
+              month: e.target.value,
+              year: this.state.main.middleform.job.enddate.year,
+            },
+            description: this.state.main.middleform.job.description,
+          },
+        },
+      },
+    });
+  onEndYearInput = (e) =>
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: {
+          jobs: this.state.main.middleform.jobs || [],
+          job: {
+            title: this.state.main.middleform.job.title,
+            company: this.state.main.middleform.job.company,
+            startdate: this.state.main.middleform.job.startdate,
+            enddate: {
+              ongoing: this.state.main.middleform.job.enddate.ongoing,
+
+              month: this.state.main.middleform.job.enddate.month,
+              year: e.target.value,
+            },
+            description: this.state.main.middleform.job.description,
+          },
+        },
+      },
+    });
+  onCompanyDescriptionInput = (e) =>
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: {
+          jobs: this.state.main.middleform.jobs || [],
+          job: {
+            title: this.state.main.middleform.job.title,
+            company: this.state.main.middleform.job.company,
+            startdate: this.state.main.middleform.job.startdate,
+            enddate: {
+              ongoing: this.state.main.middleform.job.enddate.ongoing,
+
+              month: this.state.main.middleform.job.enddate.month,
+              year: this.state.main.middleform.job.enddate.year,
+            },
+            description: e.target.value,
           },
         },
       },
     });
 
   onSubmit = (e) => e.preventDefault();
+
   onSubmitToSkillsList = (e) => {
     e.preventDefault();
     if (this.state.main.topform.skills.length >= 8) return;
@@ -241,6 +414,35 @@ class App extends Component {
           summary: this.state.main.topform.summary,
         },
         middleform: this.state.main.middleform,
+      },
+    });
+  };
+  onSubmitToJobsList = (e) => {
+    e.preventDefault();
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: {
+          jobs: this.state.main.middleform.jobs.concat(
+            this.state.main.middleform.job
+          ),
+          job: {
+            title: "",
+            company: "",
+            startdate: {
+              month: "",
+              year: "",
+            },
+            enddate: {
+              ongoing: true,
+              month: "",
+              year: "",
+            },
+            description: "",
+            key: uniqid(),
+          },
+        },
       },
     });
   };
@@ -351,7 +553,7 @@ class App extends Component {
                   <input
                     type="url"
                     required
-                    className="user--github user--contactinput bg-gray-100 p-1rounded-lg px-4 text-lg mb-5"
+                    className="user--github user--contactinput bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
                     placeholder="GitHub"
                     onInput={this.onGitHubInput}
                   />
@@ -402,10 +604,10 @@ class App extends Component {
                       Add
                     </button>
                   </div>
-                  <div className="skillsform--userinput flex h-20 mx-4">
+                  <div className="skillsform--userinput flex min-h-fit mb-5 mx-4 mt-5 rounded-lg bg-white p-12">
                     <ul className="userinput--list grid pr-3 mx-4">
                       {this.state.main.topform.skills.map((skill) => (
-                        <li className="userinput--skill text-white">
+                        <li className="userinput--skill text-black">
                           {skill.skillname}
                         </li>
                       ))}
@@ -415,7 +617,7 @@ class App extends Component {
               </form>
             </div>
             <div className="main--middleform w-11/12 mt-4 mr-auto ml-auto">
-              <form action="" onSubmit={this.onSubmit}>
+              <form action="" onSubmit={this.onSubmitToJobsList}>
                 <div className="form--formrow flex flex-col flex-start">
                   <p className="formrow--title bordbot--none mb-2 text-xl text-white">
                     Work experience
@@ -434,6 +636,7 @@ class App extends Component {
                         className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
                         placeholder="Ex: Sales Manager"
                         onChange={this.onTitleInput}
+                        value={this.state.main.middleform.job.title}
                       />
                     </div>
                     <div className="workexperience--row flex flex-col mx-4 mb-4">
@@ -449,12 +652,13 @@ class App extends Component {
                         className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
                         placeholder="Ex: Google"
                         onChange={this.onCompanyInput}
+                        value={this.state.main.middleform.job.company}
                       />
                     </div>
                     <div className="workexperience--row flex flex-col mx-4 mb-4">
                       <label
                         htmlFor="job--startdate"
-                        className="text-white text-lg"
+                        className="text-white text-lg mb-2"
                       >
                         Start Date
                       </label>
@@ -463,6 +667,8 @@ class App extends Component {
                           name="job--startdate"
                           id="job--startdate"
                           className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                          onChange={this.onStartMonthInput}
+                          value={this.state.main.middleform.job.startdate.month}
                         >
                           <option value="" hidden>
                             Month
@@ -484,6 +690,9 @@ class App extends Component {
                           name="job--startyear"
                           id="job--startyear required"
                           className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                          onChange={this.onStartYearInput}
+                          required
+                          value={this.state.main.middleform.job.startdate.year}
                         >
                           <option value="" hidden>
                             Year
@@ -508,6 +717,7 @@ class App extends Component {
                           type="checkbox"
                           id="job--noenddate"
                           className="bg-white rounded-lg p-2 text-lg mr-2"
+                          onChange={this.onJobOngoingCheckboxInput}
                         />
                         <label
                           htmlFor="job--noenddate"
@@ -523,11 +733,16 @@ class App extends Component {
                       >
                         End Date
                       </label>
-                      <div className="enddate--container flex">
+                      <div className="enddate--container flex mt-2">
                         <select
+                          disabled={
+                            this.state.main.middleform.job.enddate.ongoing
+                          }
                           name="job--enddate"
                           id="job--enddate"
                           className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                          onChange={this.onEndMonthInput}
+                          value={this.state.main.middleform.job.enddate.month}
                         >
                           <option value="" hidden>
                             Month
@@ -546,9 +761,15 @@ class App extends Component {
                           <option value="December">December</option>
                         </select>
                         <select
+                          disabled={
+                            this.state.main.middleform.job.enddate.ongoing
+                          }
                           name="job--endyear"
                           id="job--endyear"
                           className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                          required
+                          onChange={this.onEndYearInput}
+                          value={this.state.main.middleform.job.enddate.year}
                         >
                           <option value="" hidden>
                             Year
@@ -579,18 +800,46 @@ class App extends Component {
                       <textarea
                         rows="3"
                         cols="115"
-                        className="job--description resize-none bg-white p-1 rounded-lg px-4 text-lg mb-5 ml-4"
+                        className="job--description resize-none bg-white p-1 rounded-lg px-4 text-lg mb-5 mt-2"
                         maxLength="280"
+                        minLength="80"
+                        onChange={this.onCompanyDescriptionInput}
                       />
                     </div>
                     <button
                       type="submit"
-                      className="bg-white text-green-300 py-1 px-4 ml-4 text-lg rounded-lg"
+                      className="bg-white text-green-300 py-1 px-4 ml-4 text-lg rounded-lg mb-4"
+                      on
                     >
                       Add
                     </button>
                   </div>
-                  <div className="jobform--userinput flex h-36 mb-5 mx-4"></div>
+                  <div className="jobform--userinput flex  flex-col mb-5 mx-4 mt-5 rounded-lg bg-white pt-12 px-12 ">
+                    {this.state.main.middleform.jobs.map((job) => (
+                      <div
+                        className="job--container bg-gray-100 p-4 rounded-lg mb-12"
+                        key={job.key}
+                      >
+                        <h3 className="job--title font-medium  px-4 text-2xl my-2">
+                          {job.title}
+                        </h3>
+                        <p className="job--company px-4 text-xl my-1 font-medium">
+                          {job.company}
+                        </p>
+                        <p className="job--startenddates px-4 text-gray-400">
+                          {job.startdate.month} {job.startdate.year} -
+                          {job.enddate.ongoing
+                            ? " Present"
+                            : ` ${job.enddate.month} ${job.enddate.year}`}
+                        </p>
+                        {job.description ? (
+                          <p className="job--description px-4 mt-1">
+                            {job.description}
+                          </p>
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </form>
             </div>
