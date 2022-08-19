@@ -45,21 +45,6 @@ class App extends Component {
               description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, error! Voluptatem culpa est illo aut accusamus vitae iusto. Modi tenetur, temporibus officiis itaque ratione minus omnis tempore id illo deserunt adipisci nulla debitis necessitatibus maiores deleniti error non ipsa dolorum aperiam nemo animi ab corrupti. Perspiciatis dicta tempora voluptate id veritatis doloribus ab pariatur illum. Rerum, doloremque in porro pariatur aspernatur unde vero, eum laboriosam non ducimus aut eius dolorum voluptates culpa vel? Sit aliquam, ipsam eum aperiam sint commodi!`,
               key: uniqid(),
             },
-            {
-              title: "Sales Manager",
-              company: "My.Co",
-              startdate: {
-                month: "May",
-                year: "2020",
-              },
-              enddate: {
-                ongoing: true,
-                month: "",
-                year: "",
-              },
-              description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, error! Voluptatem culpa est illo aut accusamus vitae iusto. Modi tenetur, temporibus officiis itaque ratione minus omnis tempore id illo deserunt adipisci nulla debitis necessitatibus maiores deleniti error non ipsa dolorum aperiam nemo animi ab corrupti. Perspiciatis dicta tempora voluptate id veritatis doloribus ab pariatur illum. Rerum, doloremque in porro pariatur aspernatur unde vero, eum laboriosam non ducimus aut eius dolorum voluptates culpa vel? Sit aliquam, ipsam eum aperiam sint commodi!`,
-              key: uniqid(),
-            },
           ],
           job: {
             title: "",
@@ -77,10 +62,44 @@ class App extends Component {
             key: uniqid(),
           },
         },
+        bottomform: {
+          educationArr: [
+            {
+              school: "University of Bucharest",
+              degree: "Bachelors",
+              field: "Chemistry",
+              startdate: {
+                month: "September",
+                year: "2017",
+              },
+              enddate: {
+                month: "July",
+                year: "2020",
+              },
+              description:
+                " Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, error! Voluptatem culpa est illo aut accusamus vitae iusto. Modi tenetur, temporibus officiis itaque ratione minus omnis tempore id illo deserunt adipisci nulla debitis necessitatibus maiores deleniti error non ipsa dolorum aperiam nemo animi ab corrupti. Perspiciatis dicta tempora voluptate id veritatis doloribus ab pariatur illum. Rerum, doloremque in porro pariatur aspernatur unde vero, eum laboriosam non ducimus aut eius dolorum voluptates culpa vel? Sit aliquam, ipsam eum aperiam sint commodi! ",
+              key: uniqid(),
+            },
+          ],
+          education: {
+            school: "",
+            degree: "",
+            field: "",
+            startdate: {
+              month: "",
+              year: "",
+            },
+            enddate: {
+              month: "",
+              year: "",
+            },
+            description: "",
+            key: uniqid(),
+          },
+        },
       },
       file: null,
     };
-    this.onSubmit = this.onSubmit.bind(this);
     this.onSubmitToSkillsList = this.onSubmitToSkillsList.bind(this);
     this.onImgUpload = this.onImgUpload.bind(this);
     this.onEmailInput = this.onEmailInput.bind(this);
@@ -209,6 +228,7 @@ class App extends Component {
           skill: this.state.main.topform.skill,
         },
         middleform: this.state.main.middleform,
+        bottomform: this.state.main.bottomform,
       },
     });
   };
@@ -226,6 +246,7 @@ class App extends Component {
           },
         },
         middleform: this.state.main.middleform,
+        bottomform: this.state.main.bottomform,
       },
     });
 
@@ -246,6 +267,7 @@ class App extends Component {
             description: this.state.main.middleform.job.description,
           },
         },
+        bottomform: this.state.main.bottomform,
       },
     });
   onCompanyInput = (e) =>
@@ -263,6 +285,7 @@ class App extends Component {
             description: this.state.main.middleform.job.description,
           },
         },
+        bottomform: this.state.main.bottomform,
       },
     });
   onStartMonthInput = (e) =>
@@ -283,6 +306,7 @@ class App extends Component {
             description: this.state.main.middleform.job.description,
           },
         },
+        bottomform: this.state.main.bottomform,
       },
     });
   onStartYearInput = (e) =>
@@ -303,6 +327,7 @@ class App extends Component {
             description: this.state.main.middleform.job.description,
           },
         },
+        bottomform: this.state.main.bottomform,
       },
     });
   onJobOngoingCheckboxInput = (e) =>
@@ -327,6 +352,7 @@ class App extends Component {
             description: this.state.main.middleform.job.description,
           },
         },
+        bottomform: this.state.main.bottomform,
       },
     });
   onEndMonthInput = (e) =>
@@ -348,6 +374,7 @@ class App extends Component {
             description: this.state.main.middleform.job.description,
           },
         },
+        bottomform: this.state.main.bottomform,
       },
     });
   onEndYearInput = (e) =>
@@ -370,6 +397,7 @@ class App extends Component {
             description: this.state.main.middleform.job.description,
           },
         },
+        bottomform: this.state.main.bottomform,
       },
     });
   onCompanyDescriptionInput = (e) =>
@@ -392,10 +420,201 @@ class App extends Component {
             description: e.target.value,
           },
         },
+        bottomform: this.state.main.bottomform,
       },
     });
 
-  onSubmit = (e) => e.preventDefault();
+  // bottom middle form methods
+  onSchoolInput = (e) =>
+    this.setState({
+      mode: this.state.mode,
+      file: this.state.file,
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: this.state.main.middleform,
+        bottomform: {
+          educationArr: this.state.main.bottomform.educationArr,
+          education: {
+            school: e.target.value,
+            degree: this.state.main.bottomform.education.degree,
+            field: this.state.main.bottomform.education.field,
+            startdate: this.state.main.bottomform.education.startdate,
+            enddate: this.state.main.bottomform.education.enddate,
+            description: this.state.main.bottomform.education.description,
+            key: this.state.main.bottomform.education.key,
+          },
+        },
+      },
+    });
+  onDegreeInput = (e) =>
+    this.setState({
+      mode: this.state.mode,
+      file: this.state.file,
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: this.state.main.middleform,
+        bottomform: {
+          educationArr: this.state.main.bottomform.educationArr,
+          education: {
+            school: this.state.main.bottomform.education.school,
+            degree: e.target.value,
+            field: this.state.main.bottomform.education.field,
+            startdate: this.state.main.bottomform.education.startdate,
+            enddate: this.state.main.bottomform.education.enddate,
+            description: this.state.main.bottomform.education.description,
+            key: this.state.main.bottomform.education.key,
+          },
+        },
+      },
+    });
+  onFieldInput = (e) =>
+    this.setState({
+      mode: this.state.mode,
+      file: this.state.file,
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: this.state.main.middleform,
+        bottomform: {
+          educationArr: this.state.main.bottomform.educationArr,
+          education: {
+            school: this.state.main.bottomform.education.school,
+            degree: this.state.main.bottomform.education.degree,
+            field: e.target.value,
+            startdate: this.state.main.bottomform.education.startdate,
+            enddate: this.state.main.bottomform.education.enddate,
+            description: this.state.main.bottomform.education.description,
+            key: this.state.main.bottomform.education.key,
+          },
+        },
+      },
+    });
+  onStartEducationMonthInput = (e) =>
+    this.setState({
+      mode: this.state.mode,
+      file: this.state.file,
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: this.state.main.middleform,
+        bottomform: {
+          educationArr: this.state.main.bottomform.educationArr,
+          education: {
+            school: this.state.main.bottomform.education.school,
+            degree: this.state.main.bottomform.education.degree,
+            field: this.state.main.bottomform.education.field,
+            startdate: {
+              month: e.target.value,
+              year: this.state.main.bottomform.education.startdate.year,
+            },
+            enddate: this.state.main.bottomform.education.enddate,
+            description: this.state.main.bottomform.education.description,
+            key: this.state.main.bottomform.education.key,
+          },
+        },
+      },
+    });
+  onStartEducationYearInput = (e) =>
+    this.setState({
+      mode: this.state.mode,
+      file: this.state.file,
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: this.state.main.middleform,
+        bottomform: {
+          educationArr: this.state.main.bottomform.educationArr,
+          education: {
+            school: this.state.main.bottomform.education.school,
+            degree: this.state.main.bottomform.education.degree,
+            field: this.state.main.bottomform.education.field,
+            startdate: {
+              month: this.state.main.bottomform.education.startdate.month,
+              year: e.target.value,
+            },
+            enddate: this.state.main.bottomform.education.enddate,
+            description: this.state.main.bottomform.education.description,
+            key: this.state.main.bottomform.education.key,
+          },
+        },
+      },
+    });
+  onEndEducationMonthInput = (e) =>
+    this.setState({
+      mode: this.state.mode,
+      file: this.state.file,
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: this.state.main.middleform,
+        bottomform: {
+          educationArr: this.state.main.bottomform.educationArr,
+          education: {
+            school: this.state.main.bottomform.education.school,
+            degree: this.state.main.bottomform.education.degree,
+            field: this.state.main.bottomform.education.field,
+            startdate: this.state.main.bottomform.education.startdate,
+            enddate: {
+              month: e.target.value,
+              year: this.state.main.bottomform.education.enddate.year,
+            },
+            description: this.state.main.bottomform.education.description,
+            key: this.state.main.bottomform.education.key,
+          },
+        },
+      },
+    });
+  onEndEducationYearInput = (e) =>
+    this.setState({
+      mode: this.state.mode,
+      file: this.state.file,
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: this.state.main.middleform,
+        bottomform: {
+          educationArr: this.state.main.bottomform.educationArr,
+          education: {
+            school: this.state.main.bottomform.education.school,
+            degree: this.state.main.bottomform.education.degree,
+            field: this.state.main.bottomform.education.field,
+            startdate: this.state.main.bottomform.education.startdate,
+            enddate: {
+              month: this.state.main.bottomform.education.enddate.month,
+              year: e.target.value,
+            },
+            description: this.state.main.bottomform.education.description,
+            key: this.state.main.bottomform.education.key,
+          },
+        },
+      },
+    });
+  onEducationDescriptionInput = (e) =>
+    this.setState({
+      mode: this.state.mode,
+      file: this.state.file,
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: this.state.main.middleform,
+        bottomform: {
+          educationArr: this.state.main.bottomform.educationArr,
+          education: {
+            school: this.state.main.bottomform.education.school,
+            degree: this.state.main.bottomform.education.degree,
+            field: this.state.main.bottomform.education.field,
+            startdate: this.state.main.bottomform.education.startdate,
+            enddate: this.state.main.bottomform.education.enddate,
+            description: e.target.value,
+            key: this.state.main.bottomform.education.key,
+          },
+        },
+      },
+    });
+
+  // submit methods
 
   onSubmitToSkillsList = (e) => {
     e.preventDefault();
@@ -414,6 +633,38 @@ class App extends Component {
           summary: this.state.main.topform.summary,
         },
         middleform: this.state.main.middleform,
+        bottomform: this.state.main.bottomform,
+      },
+    });
+  };
+  onSubmitToEducationList = (e) => {
+    e.preventDefault();
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: this.state.main.middleform,
+
+        bottomform: {
+          educationArr: this.state.main.bottomform.educationArr.concat(
+            this.state.main.bottomform.education
+          ),
+          education: {
+            school: "",
+            degree: "",
+            field: "",
+            startdate: {
+              month: "",
+              year: "",
+            },
+            enddate: {
+              month: "",
+              year: "",
+            },
+            description: "",
+            key: uniqid(),
+          },
+        },
       },
     });
   };
@@ -443,6 +694,7 @@ class App extends Component {
             key: uniqid(),
           },
         },
+        bottomform: this.state.main.bottomform,
       },
     });
   };
@@ -569,29 +821,31 @@ class App extends Component {
             </div>
           </div>
           <div className="main--app flex w-11/12 align-center flex-col">
-            <div className="main--topform w-11/12 mt-12 mr-auto ml-auto">
+            <div className="main--topform w-11/12 mt-12 mr-auto ml-auto bg-green-300 p-4 rounded-lg">
               <form action="" onSubmit={this.onSubmitToSkillsList}>
                 <div className="flex flex-col">
-                  <p className="formrow--title bordbot--none mb-2 text-white text-xl">
-                    Summary
+                  <h3 className="topform--title mb-2 text-2xl text-white">
+                    About you
+                  </h3>
+                  <p className="formrow--title bordbot--none mb-2 ml-4 text-white text-xl">
+                    Summary*
                   </p>
                   <textarea
                     rows="3"
                     cols="115"
                     required
-                    className="user--summary resize-none bg-white p-1 rounded-lg px-4 text-lg mb-5 ml-4"
+                    className="user--summary resize-none bg-white p-1 rounded-lg px-4 text-lg mb-5 mx-4"
                     onInput={this.onSummaryInput}
                     maxLength="280"
                   />
                 </div>
                 <div className="form--bottomrow form--formrow flex flex-col flex-start">
-                  <p className="formrow--title bordbot--none mb-2 mt-10 text-xl text-white">
+                  <p className="formrow--title bordbot--none mb-2 ml-4 text-xl text-white">
                     Skills
                   </p>
                   <div className="form--skillinput">
                     <input
                       type="text"
-                      required
                       className="user--skills w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-5 mx-4"
                       placeholder="Add a skill"
                       value={this.state.main.topform.skill.skillname}
@@ -616,10 +870,10 @@ class App extends Component {
                 </div>
               </form>
             </div>
-            <div className="main--middleform w-11/12 mt-4 mr-auto ml-auto">
+            <div className="main--middleform w-11/12 mt-12 mr-auto ml-auto">
               <form action="" onSubmit={this.onSubmitToJobsList}>
-                <div className="form--formrow flex flex-col flex-start">
-                  <p className="formrow--title bordbot--none mb-2 text-xl text-white">
+                <div className="form--formrow flex flex-col flex-start bg-green-300 p-4 rounded-lg">
+                  <p className="formrow--title bordbot--none mb-2 text-2xl text-white">
                     Work experience
                   </p>
                   <div className="form--workexperience">
@@ -628,7 +882,7 @@ class App extends Component {
                         htmlFor="job--title"
                         className="text-white text-lg"
                       >
-                        Title
+                        Title*
                       </label>
                       <input
                         type="text"
@@ -644,7 +898,7 @@ class App extends Component {
                         htmlFor="job--company"
                         className="text-white text-lg"
                       >
-                        Company
+                        Company*
                       </label>
                       <input
                         type="text"
@@ -695,7 +949,7 @@ class App extends Component {
                           value={this.state.main.middleform.job.startdate.year}
                         >
                           <option value="" hidden>
-                            Year
+                            Year*
                           </option>
                           <option value="2010">2010</option>
                           <option value="2011">2011</option>
@@ -772,7 +1026,7 @@ class App extends Component {
                           value={this.state.main.middleform.job.enddate.year}
                         >
                           <option value="" hidden>
-                            Year
+                            Year*
                           </option>
                           <option value="2010">2010</option>
                           <option value="2011">2011</option>
@@ -800,7 +1054,7 @@ class App extends Component {
                       <textarea
                         rows="3"
                         cols="115"
-                        className="job--description resize-none bg-white p-1 rounded-lg px-4 text-lg mb-5 mt-2"
+                        className="job--description resize-none bg-white  rounded-lg px-4 text-lg mb-5 mt-2"
                         maxLength="280"
                         minLength="80"
                         onChange={this.onCompanyDescriptionInput}
@@ -839,6 +1093,237 @@ class App extends Component {
                         ) : null}
                       </div>
                     ))}
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div className="main--bottomform w-11/12 mt-12 mr-auto ml-auto">
+              <form action="" onSubmit={this.onSubmitToEducationList}>
+                <div className="form--formrow flex flex-col flex-start bg-green-300 p-4 rounded-lg">
+                  <p className="formrow--title bordbot--none mb-2 text-2xl text-white">
+                    Education
+                  </p>
+                  <div className="form--education">
+                    <div className="education--row flex flex-col mx-4 mb-4">
+                      <label
+                        htmlFor="education--school"
+                        className="text-white text-lg"
+                      >
+                        School*
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
+                        placeholder="Ex: Bucharest Univeristy"
+                        onChange={this.onSchoolInput}
+                        value={this.state.main.bottomform.education.school}
+                      />
+                    </div>
+                    <div className="education--row flex flex-col mx-4 mb-4">
+                      <label
+                        htmlFor="education--degree"
+                        className="text-white text-lg"
+                      >
+                        Degree
+                      </label>
+                      <input
+                        type="text"
+                        className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
+                        placeholder="Ex: Bachelors"
+                        onChange={this.onDegreeInput}
+                        value={this.state.main.bottomform.education.degree}
+                      />
+                    </div>
+                    <div className="education--row flex flex-col mx-4 mb-4">
+                      <label
+                        htmlFor="education--field"
+                        className="text-white text-lg"
+                      >
+                        Field
+                      </label>
+                      <input
+                        type="text"
+                        className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
+                        placeholder="Ex: Chemistry"
+                        onChange={this.onFieldInput}
+                        value={this.state.main.bottomform.education.field}
+                      />
+                    </div>
+                    <div className="education--row flex flex-col mx-4 mb-4">
+                      <label
+                        htmlFor="education--startdate"
+                        className="text-white text-lg mb-2"
+                      >
+                        Start Date
+                      </label>
+                      <div className="startdate--container flex">
+                        <select
+                          name="education--startdate"
+                          id="education--startdate"
+                          className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                          onChange={this.onStartEducationMonthInput}
+                          value={
+                            this.state.main.bottomform.education.startdate.month
+                          }
+                        >
+                          <option value="" hidden>
+                            Month
+                          </option>
+                          <option value="January">January</option>
+                          <option value="February">February</option>
+                          <option value="March">March</option>
+                          <option value="April">April</option>
+                          <option value="May">May</option>
+                          <option value="June">June</option>
+                          <option value="July">July</option>
+                          <option value="August">August</option>
+                          <option value="September">September</option>
+                          <option value="October">October</option>
+                          <option value="November">November</option>
+                          <option value="December">December</option>
+                        </select>
+                        <select
+                          name="education--startyear"
+                          id="education--startyear"
+                          className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                          required
+                          onChange={this.onStartEducationYearInput}
+                          value={
+                            this.state.main.bottomform.education.startdate.year
+                          }
+                        >
+                          <option value="" hidden>
+                            Year*
+                          </option>
+                          <option value="2010">2010</option>
+                          <option value="2011">2011</option>
+                          <option value="2012">2012</option>
+                          <option value="2013">2013</option>
+                          <option value="2014">2014</option>
+                          <option value="2015">2015</option>
+                          <option value="2016">2016</option>
+                          <option value="2017">2017</option>
+                          <option value="2018">2018</option>
+                          <option value="2019">2019</option>
+                          <option value="2020">2020</option>
+                          <option value="2021">2021</option>
+                          <option value="2022">2022</option>
+                        </select>
+                      </div>
+
+                      <label
+                        htmlFor="education--enddate"
+                        className="text-white text-lg"
+                      >
+                        End Date
+                      </label>
+                      <div className="enddate--container flex mt-2">
+                        <select
+                          name="education--enddate"
+                          id="education--enddate"
+                          className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                          onChange={this.onEndEducationMonthInput}
+                          value={
+                            this.state.main.bottomform.education.enddate.month
+                          }
+                        >
+                          <option value="" hidden>
+                            Month
+                          </option>
+                          <option value="January">January</option>
+                          <option value="February">February</option>
+                          <option value="March">March</option>
+                          <option value="April">April</option>
+                          <option value="May">May</option>
+                          <option value="June">June</option>
+                          <option value="July">July</option>
+                          <option value="August">August</option>
+                          <option value="September">September</option>
+                          <option value="October">October</option>
+                          <option value="November">November</option>
+                          <option value="December">December</option>
+                        </select>
+                        <select
+                          name="education--endyear"
+                          id="education--endyear"
+                          className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                          required
+                          onChange={this.onEndEducationYearInput}
+                          value={
+                            this.state.main.bottomform.education.enddate.year
+                          }
+                        >
+                          <option value="" hidden>
+                            Year*
+                          </option>
+                          <option value="2010">2010</option>
+                          <option value="2011">2011</option>
+                          <option value="2012">2012</option>
+                          <option value="2013">2013</option>
+                          <option value="2014">2014</option>
+                          <option value="2015">2015</option>
+                          <option value="2016">2016</option>
+                          <option value="2017">2017</option>
+                          <option value="2018">2018</option>
+                          <option value="2019">2019</option>
+                          <option value="2020">2020</option>
+                          <option value="2021">2021</option>
+                          <option value="2022">2022</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="education--row flex flex-col mx-4 mb-4">
+                      <label
+                        htmlFor="education--description"
+                        className="text-white text-lg"
+                      >
+                        Description
+                      </label>
+                      <textarea
+                        rows="3"
+                        cols="115"
+                        className="education--description resize-none bg-white  rounded-lg px-4 text-lg mb-5 mt-2"
+                        maxLength="280"
+                        minLength="80"
+                        onChange={this.onEducationDescriptionInput}
+                        value={this.state.main.bottomform.education.description}
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="bg-white text-green-300 py-1 px-4 ml-4 text-lg rounded-lg mb-4"
+                      on
+                    >
+                      Add
+                    </button>
+                  </div>
+                  <div className="education--userinput flex  flex-col mb-5 mx-4 mt-5 rounded-lg bg-white pt-12 px-12 ">
+                    {this.state.main.bottomform.educationArr.map(
+                      (education) => (
+                        <div
+                          className="education--container bg-gray-100 p-4 rounded-lg mb-12"
+                          key={education.key}
+                        >
+                          <h3 className="education--school font-medium  px-4 text-2xl my-2">
+                            {education.school}
+                          </h3>
+                          <p className="education--degreeandfield px-4 text-lg my-1 font-medium">
+                            {education.degree} in {education.field}
+                          </p>
+                          <p className="education--startenddates px-4 text-gray-400">
+                            {education.startdate.month}{" "}
+                            {education.startdate.year} -{" "}
+                            {education.enddate.month} {education.enddate.year}
+                          </p>
+                          {education.description ? (
+                            <p className="education--description px-4 mt-1">
+                              {education.description}
+                            </p>
+                          ) : null}
+                        </div>
+                      )
+                    )}
                   </div>
                 </div>
               </form>
