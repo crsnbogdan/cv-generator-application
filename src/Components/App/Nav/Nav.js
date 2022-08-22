@@ -6,7 +6,7 @@ class Nav extends Component {
   }
   render() {
     return (
-      <div className="nav flex justify-between items-center px-20 bg-white">
+      <div className="nav z-40 flex justify-between items-center px-20 bg-white">
         {this.props.mode === "editing" ? (
           <div className="navtext">
             <h1 className="font-bold text-3xl text-purple-600">CV Generator</h1>

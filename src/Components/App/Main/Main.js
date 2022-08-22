@@ -5,8 +5,8 @@ class Main extends Component {
     super(props);
   }
   render() {
-    return (
-      <div className="main--app flex w-11/12 align-center flex-col pb-12">
+    let main = (
+      <>
         <div className="main--topform w-11/12 mt-12 mr-auto ml-auto  p-4 ">
           <form action="" onSubmit={this.props.onSubmitToSkillsList}>
             <div className="flex flex-col">
@@ -229,7 +229,7 @@ class Main extends Component {
                     cols="115"
                     className="job--description resize-none bg-white   px-4 text-lg mb-5 mt-2"
                     maxLength="280"
-                    minLength="80"
+                    minLength="20"
                     onChange={this.props.onCompanyDescriptionInput}
                   />
                 </div>
@@ -450,7 +450,7 @@ class Main extends Component {
                     cols="115"
                     className="education--description resize-none bg-white   px-4 text-lg mb-5 mt-2"
                     maxLength="280"
-                    minLength="80"
+                    minLength="20"
                     onChange={this.props.onEducationDescriptionInput}
                     value={this.props.bottomform.education.description}
                   />
@@ -490,8 +490,23 @@ class Main extends Component {
             </div>
           </form>
         </div>
-      </div>
+      </>
     );
+    {
+      if (this.props.mode === "editing") {
+        return (
+          <div className="main--app flex w-11/12 align-center flex-col pb-12">
+            {main}
+          </div>
+        );
+      } else {
+        return (
+          <div className="main--app blurred flex w-11/12 align-center flex-col pb-12">
+            {main}
+          </div>
+        );
+      }
+    }
   }
 }
 

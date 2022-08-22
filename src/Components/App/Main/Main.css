@@ -15,7 +15,14 @@ textarea:focus {
 .user--imagecontainer {
   background-size: cover;
 }
-.userinput--list {
+.userinput--list,
+.main--skillslist {
   grid-template-columns: 150px 150px 150px 150px;
   list-style: initial;
+}
+.blurred {
+  filter: blur(10px);
+}
+.main {
+  overflow: hidden;
 }

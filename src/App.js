@@ -5,6 +5,7 @@ import Footer from "./Components/App/Footer/Footer";
 import Main from "./Components/App/Main/Main";
 import Nav from "./Components/App/Nav/Nav";
 import Sidebar from "./Components/App/Sidebar/Sidebar";
+import RApp from "./Components/RenderedApp/RApp";
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class App extends Component {
           phoneNumber: "",
           linkedin: "",
           github: "",
+          address: "",
         },
       },
       main: {
@@ -33,23 +35,7 @@ class App extends Component {
           },
         },
         middleform: {
-          jobs: [
-            {
-              title: "Sales Manager",
-              company: "My.Co",
-              startdate: {
-                month: "May",
-                year: "2020",
-              },
-              enddate: {
-                ongoing: true,
-                month: "",
-                year: "",
-              },
-              description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, error! Voluptatem culpa est illo aut accusamus vitae iusto. Modi tenetur, temporibus officiis itaque ratione minus omnis tempore id illo deserunt adipisci nulla debitis necessitatibus maiores deleniti error non ipsa dolorum aperiam nemo animi ab corrupti. Perspiciatis dicta tempora voluptate id veritatis doloribus ab pariatur illum. Rerum, doloremque in porro pariatur aspernatur unde vero, eum laboriosam non ducimus aut eius dolorum voluptates culpa vel? Sit aliquam, ipsam eum aperiam sint commodi!`,
-              key: uniqid(),
-            },
-          ],
+          jobs: [],
           job: {
             title: "",
             company: "",
@@ -67,24 +53,7 @@ class App extends Component {
           },
         },
         bottomform: {
-          educationArr: [
-            {
-              school: "University of Bucharest",
-              degree: "Bachelors",
-              field: "Chemistry",
-              startdate: {
-                month: "September",
-                year: "2017",
-              },
-              enddate: {
-                month: "July",
-                year: "2020",
-              },
-              description:
-                " Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, error! Voluptatem culpa est illo aut accusamus vitae iusto. Modi tenetur, temporibus officiis itaque ratione minus omnis tempore id illo deserunt adipisci nulla debitis necessitatibus maiores deleniti error non ipsa dolorum aperiam nemo animi ab corrupti. Perspiciatis dicta tempora voluptate id veritatis doloribus ab pariatur illum. Rerum, doloremque in porro pariatur aspernatur unde vero, eum laboriosam non ducimus aut eius dolorum voluptates culpa vel? Sit aliquam, ipsam eum aperiam sint commodi! ",
-              key: uniqid(),
-            },
-          ],
+          educationArr: [],
           education: {
             school: "",
             degree: "",
@@ -702,7 +671,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App relative">
+        {this.state.mode === "previewing" ? (
+          <RApp sidebar={this.state.sidebar} main={this.state.main} />
+        ) : null}
+
         <Nav mode={this.state.mode} switchMode={this.switchMode} />
         <div className="main w-full bg-purple-600 flex">
           <Sidebar
@@ -714,9 +687,11 @@ class App extends Component {
             onLinkedinInput={this.onLinkedinInput}
             onGitHubInput={this.onGitHubInput}
             onAddressInput={this.onAddressInput}
+            mode={this.state.mode}
           />
           <Main
             {...this.state.main}
+            mode={this.state.mode}
             onSubmitToSkillsList={this.onSubmitToSkillsList}
             onSummaryInput={this.onSummaryInput}
             onSkillInput={this.onSkillInput}
@@ -744,6 +719,7 @@ class App extends Component {
       </div>
     );
   }
+  e;
 }
 
 export default App;
