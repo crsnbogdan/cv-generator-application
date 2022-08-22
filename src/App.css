@@ -19,59 +19,6 @@ textarea:focus {
   outline: none;
 }
 
-/* sidebar--formpage*/
-input[type="checkbox"]:not(#job--noenddate) {
-  height: 0;
-  width: 0;
-  visibility: hidden;
-}
-
-label.switchLabel {
-  cursor: pointer;
-  text-indent: -9999px;
-  width: 200px;
-  height: 100px;
-  background: rgb(156 163 175);
-  display: block;
-  border-radius: 100px;
-  position: relative;
-}
-
-label.switchLabel:after {
-  content: "";
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 90px;
-  height: 90px;
-  background: #fff;
-  border-radius: 90px;
-  transition: 0.3s;
-}
-
-input:checked:not(#job--noenddate) + label.switchLabel {
-  background: #4ade80;
-}
-
-input:checked:not(#job--noenddate) + label.switchLabel:after {
-  left: calc(100% - 5px);
-  transform: translateX(-100%);
-}
-
-label.switchLabel:active:after {
-  width: 130px;
-}
-
-label.switchLabel,
-input#switch {
-  transform: scale(0.3);
-}
-
-.nav .modetoggle {
-  max-width: 130px;
-  transform: translateY(-10px);
-}
-
 .formrow--title {
   border-bottom: 2px solid black;
 }

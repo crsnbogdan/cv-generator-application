@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import "./App.css";
+import Nav from "./Components/App/Nav/Nav";
 
 class App extends Component {
   constructor(props) {
@@ -100,6 +101,7 @@ class App extends Component {
       },
       file: null,
     };
+    /*
     this.onSubmitToSkillsList = this.onSubmitToSkillsList.bind(this);
     this.onImgUpload = this.onImgUpload.bind(this);
     this.onEmailInput = this.onEmailInput.bind(this);
@@ -116,6 +118,8 @@ class App extends Component {
     this.onEndMonthInput = this.onEndMonthInput.bind(this);
     this.onEndYearInput = this.onEndYearInput.bind(this);
     this.onCompanyDescriptionInput = this.onCompanyDescriptionInput.bind(this);
+    */
+    this.switchMode = this.switchMode.bind(this);
   }
 
   switchMode = (e) =>
@@ -702,29 +706,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="nav flex justify-between items-center px-20 bg-white">
-          {this.state.mode === "editing" ? (
-            <div className="navtext">
-              <h1 className="font-bold text-3xl text-green-400">
-                CV Generator
-              </h1>
-              <p className="my-1 text-lg text-gray-400">Currently editing</p>
-            </div>
-          ) : (
-            <div className="navtext">
-              <h1 className="font-bold text-3xl text-gray-400">CV Generator</h1>
-              <p className="my-1 text-lg text-green-400">
-                Currently previewing
-              </p>
-            </div>
-          )}
-          <div className="modetoggle">
-            <input type="checkbox" id="switch" onChange={this.switchMode} />
-            <label htmlFor="switch" className="switchLabel">
-              Toggle
-            </label>
-          </div>
-        </div>
+        <Nav mode={this.state.mode} switchMode={this.switchMode} />
         <div className="main w-full bg-green-400 flex">
           <div className="main--sidebar w-1/5 p-10 bg-white">
             <div className="sidebar--form--container">
