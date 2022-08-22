@@ -5,8 +5,8 @@ class Sidebar extends Component {
   }
   render() {
     return (
-      <div className="main--sidebar w-1/5 p-10 bg-white">
-        <div className="sidebar--form--container">
+      <div className="main--sidebar w-1/5 p-10 bg-purple-600 relative">
+        <div className="sidebar--form--container sticky top-10">
           <form action="" className="sidebar--form">
             <div className="flex flex-col align-center mb-5 justify-center">
               <input
@@ -14,7 +14,7 @@ class Sidebar extends Component {
                 value={this.props.topRow.name}
                 onInput={this.props.onNameInputUpdate}
                 placeholder="Your name*"
-                className="user--name bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
+                className="user--name   p-1   px-4 text-lg mb-5"
                 required
                 maxLength="20"
               />
@@ -30,7 +30,7 @@ class Sidebar extends Component {
                   />
                   <label
                     htmlFor="img"
-                    className="bg-green-300 text-white px-6 py-3 text-lg rounded-lg"
+                    className="bg-white text-purple-600 px-6 py-3 text-lg w-full hover:cursor-pointer"
                   >
                     Upload an image
                   </label>
@@ -54,13 +54,11 @@ class Sidebar extends Component {
               )}
             </div>
             <div className="flex flex-col">
-              <p className="formrow--title text-lg float-right text-end mb-5">
-                Contact
-              </p>
+              <p className=" text-white text-xl mb-5">Contact details</p>
               <input
                 type="email"
                 required
-                className="user--email bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
+                className="user--email   p-1   px-4 text-lg mb-5"
                 placeholder="your@email.com*"
                 minLength={7}
                 onInput={this.props.onEmailInput}
@@ -68,7 +66,7 @@ class Sidebar extends Component {
               <input
                 type="tel"
                 required
-                className="user--number bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
+                className="user--number   p-1   px-4 text-lg mb-5"
                 placeholder="0123 456 789*"
                 pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}"
                 maxLength={10}
@@ -77,21 +75,21 @@ class Sidebar extends Component {
               <input
                 type="url"
                 required
-                className="user--linkedin bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
+                className="user--linkedin   p-1   px-4 text-lg mb-5"
                 placeholder="Linkedin"
                 onInput={this.props.onLinkedinInput}
               />
               <input
                 type="url"
                 required
-                className="user--github user--contactinput bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
+                className="user--github user--contactinput   p-1   px-4 text-lg mb-5"
                 placeholder="GitHub"
                 onInput={this.props.onGitHubInput}
               />
               <input
                 type="text"
                 required
-                className="user--address bg-gray-100 p-1 rounded-lg px-4 text-lg"
+                className="user--address   p-1   px-4 text-lg"
                 placeholder="Address"
                 onInput={this.props.onAddressInput}
               />

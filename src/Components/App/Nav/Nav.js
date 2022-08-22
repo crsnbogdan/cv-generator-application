@@ -9,13 +9,13 @@ class Nav extends Component {
       <div className="nav flex justify-between items-center px-20 bg-white">
         {this.props.mode === "editing" ? (
           <div className="navtext">
-            <h1 className="font-bold text-3xl text-green-400">CV Generator</h1>
+            <h1 className="font-bold text-3xl text-purple-600">CV Generator</h1>
             <p className="my-1 text-lg text-gray-400">Currently editing</p>
           </div>
         ) : (
           <div className="navtext">
             <h1 className="font-bold text-3xl text-gray-400">CV Generator</h1>
-            <p className="my-1 text-lg text-green-400">Currently previewing</p>
+            <p className="my-1 text-lg text-purple-600">Currently previewing</p>
           </div>
         )}
         <div className="modetoggle">

@@ -29,7 +29,7 @@ label.switchLabel:after {
 }
 
 input:checked:not(#job--noenddate) + label.switchLabel {
-  background: #4ade80;
+  background: #9333ea;
 }
 
 input:checked:not(#job--noenddate) + label.switchLabel:after {
@@ -44,6 +44,12 @@ label.switchLabel:active:after {
 label.switchLabel,
 input#switch {
   transform: scale(0.3);
+}
+
+.main--sidebar {
+  box-shadow: 25px 0px 88px -31px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 25px 0px 88px -31px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 25px 0px 88px -31px rgba(0, 0, 0, 0.1);
 }
 
 .nav .modetoggle {

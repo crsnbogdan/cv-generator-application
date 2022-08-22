@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import "./Main.css";
 class Main extends Component {
   constructor(props) {
     super(props);
   }
   render() {
     return (
-      <div className="main--app flex w-11/12 align-center flex-col">
-        <div className="main--topform w-11/12 mt-12 mr-auto ml-auto bg-green-300 p-4 rounded-lg">
+      <div className="main--app flex w-11/12 align-center flex-col pb-12">
+        <div className="main--topform w-11/12 mt-12 mr-auto ml-auto  p-4 ">
           <form action="" onSubmit={this.props.onSubmitToSkillsList}>
             <div className="flex flex-col">
               <h3 className="topform--title mb-2 text-2xl text-white">
@@ -19,7 +20,7 @@ class Main extends Component {
                 rows="3"
                 cols="115"
                 required
-                className="user--summary resize-none bg-white p-1 rounded-lg px-4 text-lg mb-5 mx-4"
+                className="user--summary resize-none bg-white p-1  px-4 text-lg mb-5 mx-4"
                 onInput={this.props.onSummaryInput}
                 maxLength="280"
               />
@@ -31,19 +32,19 @@ class Main extends Component {
               <div className="form--skillinput">
                 <input
                   type="text"
-                  className="user--skills w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-5 mx-4"
+                  className="user--skills w-3/12 bg-white p-1  px-4 text-lg mb-5 mx-4"
                   placeholder="Add a skill"
                   value={this.props.topform.skill.skillname}
                   onInput={this.props.onSkillInput}
                 />
                 <button
                   type="submit"
-                  className="bg-white text-green-300 px-4 py-1 text-lg rounded-lg"
+                  className="bg-white text-purple-600 px-4 py-1 text-lg "
                 >
                   Add
                 </button>
               </div>
-              <div className="skillsform--userinput flex min-h-fit mb-5 mx-4 mt-5 rounded-lg bg-white p-12">
+              <div className="skillsform--userinput flex min-h-fit mb-5 mx-4 mt-5  bg-white p-12">
                 <ul className="userinput--list grid pr-3 mx-4">
                   {this.props.topform.skills.map((skill) => (
                     <li className="userinput--skill text-black">
@@ -57,7 +58,7 @@ class Main extends Component {
         </div>
         <div className="main--middleform w-11/12 mt-12 mr-auto ml-auto">
           <form action="" onSubmit={this.props.onSubmitToJobsList}>
-            <div className="form--formrow flex flex-col flex-start bg-green-300 p-4 rounded-lg">
+            <div className="form--formrow flex flex-col flex-start  p-4 ">
               <p className="formrow--title bordbot--none mb-2 text-2xl text-white">
                 Work experience
               </p>
@@ -69,7 +70,7 @@ class Main extends Component {
                   <input
                     type="text"
                     required
-                    className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
+                    className="w-3/12 bg-white p-1  px-4 text-lg mb-2 mt-2"
                     placeholder="Ex: Sales Manager"
                     onChange={this.props.onTitleInput}
                     value={this.props.middleform.job.title}
@@ -82,7 +83,7 @@ class Main extends Component {
                   <input
                     type="text"
                     required
-                    className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
+                    className="w-3/12 bg-white p-1  px-4 text-lg mb-2 mt-2"
                     placeholder="Ex: Google"
                     onChange={this.props.onCompanyInput}
                     value={this.props.middleform.job.company}
@@ -99,7 +100,7 @@ class Main extends Component {
                     <select
                       name="job--startdate"
                       id="job--startdate"
-                      className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                      className="bg-white p-1  px-2 text-lg mr-4"
                       onChange={this.props.onStartMonthInput}
                       value={this.props.middleform.job.startdate.month}
                     >
@@ -122,7 +123,7 @@ class Main extends Component {
                     <select
                       name="job--startyear"
                       id="job--startyear required"
-                      className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                      className="bg-white p-1  px-2 text-lg mr-4"
                       onChange={this.props.onStartYearInput}
                       required
                       value={this.props.middleform.job.startdate.year}
@@ -149,7 +150,7 @@ class Main extends Component {
                     <input
                       type="checkbox"
                       id="job--noenddate"
-                      className="bg-white rounded-lg p-2 text-lg mr-2"
+                      className="bg-white  p-2 text-lg mr-2"
                       onChange={this.props.onJobOngoingCheckboxInput}
                     />
                     <label
@@ -168,7 +169,7 @@ class Main extends Component {
                       disabled={this.props.middleform.job.enddate.ongoing}
                       name="job--enddate"
                       id="job--enddate"
-                      className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                      className="bg-white p-1  px-2 text-lg mr-4"
                       onChange={this.props.onEndMonthInput}
                       value={this.props.middleform.job.enddate.month}
                     >
@@ -192,7 +193,7 @@ class Main extends Component {
                       disabled={this.props.middleform.job.enddate.ongoing}
                       name="job--endyear"
                       id="job--endyear"
-                      className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                      className="bg-white p-1  px-2 text-lg mr-4"
                       required
                       onChange={this.props.onEndYearInput}
                       value={this.props.middleform.job.enddate.year}
@@ -226,7 +227,7 @@ class Main extends Component {
                   <textarea
                     rows="3"
                     cols="115"
-                    className="job--description resize-none bg-white  rounded-lg px-4 text-lg mb-5 mt-2"
+                    className="job--description resize-none bg-white   px-4 text-lg mb-5 mt-2"
                     maxLength="280"
                     minLength="80"
                     onChange={this.props.onCompanyDescriptionInput}
@@ -234,16 +235,16 @@ class Main extends Component {
                 </div>
                 <button
                   type="submit"
-                  className="bg-white text-green-300 py-1 px-4 ml-4 text-lg rounded-lg mb-4"
+                  className="bg-white text-purple-600 py-1 px-4 ml-4 text-lg  mb-4"
                   on
                 >
                   Add
                 </button>
               </div>
-              <div className="jobform--userinput flex  flex-col mb-5 mx-4 mt-5 rounded-lg bg-white pt-12 px-12 ">
+              <div className="jobform--userinput flex  flex-col mb-5 mx-4 mt-5  bg-white pt-12 px-12 ">
                 {this.props.middleform.jobs.map((job) => (
                   <div
-                    className="job--container bg-gray-100 p-4 rounded-lg mb-12"
+                    className="job--container bg-gray-100 p-4  mb-12"
                     key={job.key}
                   >
                     <h3 className="job--title font-medium  px-4 text-2xl my-2">
@@ -271,7 +272,7 @@ class Main extends Component {
         </div>
         <div className="main--bottomform w-11/12 mt-12 mr-auto ml-auto">
           <form action="" onSubmit={this.props.onSubmitToEducationList}>
-            <div className="form--formrow flex flex-col flex-start bg-green-300 p-4 rounded-lg">
+            <div className="form--formrow flex flex-col flex-start p-4 ">
               <p className="formrow--title bordbot--none mb-2 text-2xl text-white">
                 Education
               </p>
@@ -286,7 +287,7 @@ class Main extends Component {
                   <input
                     type="text"
                     required
-                    className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
+                    className="w-3/12 bg-white p-1  px-4 text-lg mb-2 mt-2"
                     placeholder="Ex: Bucharest Univeristy"
                     onChange={this.props.onSchoolInput}
                     value={this.props.bottomform.education.school}
@@ -301,7 +302,7 @@ class Main extends Component {
                   </label>
                   <input
                     type="text"
-                    className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
+                    className="w-3/12 bg-white p-1  px-4 text-lg mb-2 mt-2"
                     placeholder="Ex: Bachelors"
                     onChange={this.props.onDegreeInput}
                     value={this.props.bottomform.education.degree}
@@ -316,7 +317,7 @@ class Main extends Component {
                   </label>
                   <input
                     type="text"
-                    className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
+                    className="w-3/12 bg-white p-1  px-4 text-lg mb-2 mt-2"
                     placeholder="Ex: Chemistry"
                     onChange={this.props.onFieldInput}
                     value={this.props.bottomform.education.field}
@@ -333,7 +334,7 @@ class Main extends Component {
                     <select
                       name="education--startdate"
                       id="education--startdate"
-                      className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                      className="bg-white p-1  px-2 text-lg mr-4"
                       onChange={this.props.onStartEducationMonthInput}
                       value={this.props.bottomform.education.startdate.month}
                     >
@@ -356,7 +357,7 @@ class Main extends Component {
                     <select
                       name="education--startyear"
                       id="education--startyear"
-                      className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                      className="bg-white p-1  px-2 text-lg mr-4"
                       required
                       onChange={this.props.onStartEducationYearInput}
                       value={this.props.bottomform.education.startdate.year}
@@ -390,7 +391,7 @@ class Main extends Component {
                     <select
                       name="education--enddate"
                       id="education--enddate"
-                      className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                      className="bg-white p-1  px-2 text-lg mr-4"
                       onChange={this.props.onEndEducationMonthInput}
                       value={this.props.bottomform.education.enddate.month}
                     >
@@ -413,7 +414,7 @@ class Main extends Component {
                     <select
                       name="education--endyear"
                       id="education--endyear"
-                      className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
+                      className="bg-white p-1  px-2 text-lg mr-4"
                       required
                       onChange={this.props.onEndEducationYearInput}
                       value={this.props.bottomform.education.enddate.year}
@@ -447,7 +448,7 @@ class Main extends Component {
                   <textarea
                     rows="3"
                     cols="115"
-                    className="education--description resize-none bg-white  rounded-lg px-4 text-lg mb-5 mt-2"
+                    className="education--description resize-none bg-white   px-4 text-lg mb-5 mt-2"
                     maxLength="280"
                     minLength="80"
                     onChange={this.props.onEducationDescriptionInput}
@@ -456,16 +457,16 @@ class Main extends Component {
                 </div>
                 <button
                   type="submit"
-                  className="bg-white text-green-300 py-1 px-4 ml-4 text-lg rounded-lg mb-4"
+                  className="bg-white text-purple-600 py-1 px-4 ml-4 text-lg  mb-4"
                   on
                 >
                   Add
                 </button>
               </div>
-              <div className="education--userinput flex  flex-col mb-5 mx-4 mt-5 rounded-lg bg-white pt-12 px-12 ">
+              <div className="education--userinput flex  flex-col mb-5 mx-4 mt-5  bg-white pt-12 px-12 ">
                 {this.props.bottomform.educationArr.map((education) => (
                   <div
-                    className="education--container bg-gray-100 p-4 rounded-lg mb-12"
+                    className="education--container bg-gray-100 p-4  mb-12"
                     key={education.key}
                   >
                     <h3 className="education--school font-medium  px-4 text-2xl my-2">

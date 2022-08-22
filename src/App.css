@@ -7,27 +7,3 @@
   box-sizing: border-box;
   font-family: "Ubuntu", sans-serif;
 }
-#root,
-.App,
-.main,
-.main--sidebar {
-  min-height: 90vh;
-}
-
-input:focus,
-textarea:focus {
-  outline: none;
-}
-.formrow--title {
-  border-bottom: 2px solid black;
-}
-.formrow--title.bordbot--none {
-  border-bottom: none !important;
-}
-.user--imagecontainer {
-  background-size: cover;
-}
-.userinput--list {
-  grid-template-columns: 150px 150px 150px 150px;
-  list-style: initial;
-}

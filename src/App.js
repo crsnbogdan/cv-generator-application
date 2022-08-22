@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import "./App.css";
+import Footer from "./Components/App/Footer/Footer";
 import Main from "./Components/App/Main/Main";
 import Nav from "./Components/App/Nav/Nav";
 import Sidebar from "./Components/App/Sidebar/Sidebar";
@@ -703,7 +704,7 @@ class App extends Component {
     return (
       <div className="App">
         <Nav mode={this.state.mode} switchMode={this.switchMode} />
-        <div className="main w-full bg-green-400 flex">
+        <div className="main w-full bg-purple-600 flex">
           <Sidebar
             {...this.state.sidebar}
             onNameInputUpdate={this.onNameInputUpdate}
@@ -739,7 +740,7 @@ class App extends Component {
             onEducationDescriptionInput={this.onEducationDescriptionInput}
           />
         </div>
-        <div className="footer"></div>
+        <Footer />
       </div>
     );
   }
