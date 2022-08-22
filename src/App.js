@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import uniqid from "uniqid";
 import "./App.css";
+import Main from "./Components/App/Main/Main";
 import Nav from "./Components/App/Nav/Nav";
 import Sidebar from "./Components/App/Sidebar/Sidebar";
 
@@ -100,7 +101,6 @@ class App extends Component {
           },
         },
       },
-      file: null,
     };
     this.onSubmitToSkillsList = this.onSubmitToSkillsList.bind(this);
     this.onImgUpload = this.onImgUpload.bind(this);
@@ -235,7 +235,6 @@ class App extends Component {
       },
     });
   };
-
   onSkillInput = (e) =>
     this.setState({
       sidebar: this.state.sidebar,
@@ -254,7 +253,6 @@ class App extends Component {
     });
 
   // main middle form methods
-
   onTitleInput = (e) =>
     this.setState({
       sidebar: this.state.sidebar,
@@ -268,6 +266,7 @@ class App extends Component {
             startdate: this.state.main.middleform.job.startdate,
             enddate: this.state.main.middleform.job.enddate,
             description: this.state.main.middleform.job.description,
+            key: uniqid(),
           },
         },
         bottomform: this.state.main.bottomform,
@@ -286,6 +285,7 @@ class App extends Component {
             startdate: this.state.main.middleform.job.startdate,
             enddate: this.state.main.middleform.job.enddate,
             description: this.state.main.middleform.job.description,
+            key: this.state.main.middleform.job.key,
           },
         },
         bottomform: this.state.main.bottomform,
@@ -307,6 +307,7 @@ class App extends Component {
             },
             enddate: this.state.main.middleform.job.enddate,
             description: this.state.main.middleform.job.description,
+            key: this.state.main.middleform.job.key,
           },
         },
         bottomform: this.state.main.bottomform,
@@ -328,6 +329,7 @@ class App extends Component {
             },
             enddate: this.state.main.middleform.job.enddate,
             description: this.state.main.middleform.job.description,
+            key: this.state.main.middleform.job.key,
           },
         },
         bottomform: this.state.main.bottomform,
@@ -353,6 +355,7 @@ class App extends Component {
               year: this.state.main.middleform.job.enddate.year,
             },
             description: this.state.main.middleform.job.description,
+            key: this.state.main.middleform.job.key,
           },
         },
         bottomform: this.state.main.bottomform,
@@ -375,6 +378,7 @@ class App extends Component {
               year: this.state.main.middleform.job.enddate.year,
             },
             description: this.state.main.middleform.job.description,
+            key: this.state.main.middleform.job.key,
           },
         },
         bottomform: this.state.main.bottomform,
@@ -398,6 +402,7 @@ class App extends Component {
               year: e.target.value,
             },
             description: this.state.main.middleform.job.description,
+            key: this.state.main.middleform.job.key,
           },
         },
         bottomform: this.state.main.bottomform,
@@ -421,6 +426,7 @@ class App extends Component {
               year: this.state.main.middleform.job.enddate.year,
             },
             description: e.target.value,
+            key: this.state.main.middleform.job.key,
           },
         },
         bottomform: this.state.main.bottomform,
@@ -431,7 +437,6 @@ class App extends Component {
   onSchoolInput = (e) =>
     this.setState({
       mode: this.state.mode,
-      file: this.state.file,
       sidebar: this.state.sidebar,
       main: {
         topform: this.state.main.topform,
@@ -453,7 +458,6 @@ class App extends Component {
   onDegreeInput = (e) =>
     this.setState({
       mode: this.state.mode,
-      file: this.state.file,
       sidebar: this.state.sidebar,
       main: {
         topform: this.state.main.topform,
@@ -475,7 +479,6 @@ class App extends Component {
   onFieldInput = (e) =>
     this.setState({
       mode: this.state.mode,
-      file: this.state.file,
       sidebar: this.state.sidebar,
       main: {
         topform: this.state.main.topform,
@@ -497,7 +500,6 @@ class App extends Component {
   onStartEducationMonthInput = (e) =>
     this.setState({
       mode: this.state.mode,
-      file: this.state.file,
       sidebar: this.state.sidebar,
       main: {
         topform: this.state.main.topform,
@@ -522,7 +524,6 @@ class App extends Component {
   onStartEducationYearInput = (e) =>
     this.setState({
       mode: this.state.mode,
-      file: this.state.file,
       sidebar: this.state.sidebar,
       main: {
         topform: this.state.main.topform,
@@ -547,7 +548,6 @@ class App extends Component {
   onEndEducationMonthInput = (e) =>
     this.setState({
       mode: this.state.mode,
-      file: this.state.file,
       sidebar: this.state.sidebar,
       main: {
         topform: this.state.main.topform,
@@ -572,7 +572,6 @@ class App extends Component {
   onEndEducationYearInput = (e) =>
     this.setState({
       mode: this.state.mode,
-      file: this.state.file,
       sidebar: this.state.sidebar,
       main: {
         topform: this.state.main.topform,
@@ -597,7 +596,6 @@ class App extends Component {
   onEducationDescriptionInput = (e) =>
     this.setState({
       mode: this.state.mode,
-      file: this.state.file,
       sidebar: this.state.sidebar,
       main: {
         topform: this.state.main.topform,
@@ -618,7 +616,6 @@ class App extends Component {
     });
 
   // submit methods
-
   onSubmitToSkillsList = (e) => {
     e.preventDefault();
     if (this.state.main.topform.skills.length >= 8) return;
@@ -717,515 +714,30 @@ class App extends Component {
             onGitHubInput={this.onGitHubInput}
             onAddressInput={this.onAddressInput}
           />
-          <div className="main--app flex w-11/12 align-center flex-col">
-            <div className="main--topform w-11/12 mt-12 mr-auto ml-auto bg-green-300 p-4 rounded-lg">
-              <form action="" onSubmit={this.onSubmitToSkillsList}>
-                <div className="flex flex-col">
-                  <h3 className="topform--title mb-2 text-2xl text-white">
-                    About you
-                  </h3>
-                  <p className="formrow--title bordbot--none mb-2 ml-4 text-white text-xl">
-                    Summary*
-                  </p>
-                  <textarea
-                    rows="3"
-                    cols="115"
-                    required
-                    className="user--summary resize-none bg-white p-1 rounded-lg px-4 text-lg mb-5 mx-4"
-                    onInput={this.onSummaryInput}
-                    maxLength="280"
-                  />
-                </div>
-                <div className="form--bottomrow form--formrow flex flex-col flex-start">
-                  <p className="formrow--title bordbot--none mb-2 ml-4 text-xl text-white">
-                    Skills
-                  </p>
-                  <div className="form--skillinput">
-                    <input
-                      type="text"
-                      className="user--skills w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-5 mx-4"
-                      placeholder="Add a skill"
-                      value={this.state.main.topform.skill.skillname}
-                      onInput={this.onSkillInput}
-                    />
-                    <button
-                      type="submit"
-                      className="bg-white text-green-300 px-4 py-1 text-lg rounded-lg"
-                    >
-                      Add
-                    </button>
-                  </div>
-                  <div className="skillsform--userinput flex min-h-fit mb-5 mx-4 mt-5 rounded-lg bg-white p-12">
-                    <ul className="userinput--list grid pr-3 mx-4">
-                      {this.state.main.topform.skills.map((skill) => (
-                        <li className="userinput--skill text-black">
-                          {skill.skillname}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div className="main--middleform w-11/12 mt-12 mr-auto ml-auto">
-              <form action="" onSubmit={this.onSubmitToJobsList}>
-                <div className="form--formrow flex flex-col flex-start bg-green-300 p-4 rounded-lg">
-                  <p className="formrow--title bordbot--none mb-2 text-2xl text-white">
-                    Work experience
-                  </p>
-                  <div className="form--workexperience">
-                    <div className="workexperience--row flex flex-col mx-4 mb-4">
-                      <label
-                        htmlFor="job--title"
-                        className="text-white text-lg"
-                      >
-                        Title*
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
-                        placeholder="Ex: Sales Manager"
-                        onChange={this.onTitleInput}
-                        value={this.state.main.middleform.job.title}
-                      />
-                    </div>
-                    <div className="workexperience--row flex flex-col mx-4 mb-4">
-                      <label
-                        htmlFor="job--company"
-                        className="text-white text-lg"
-                      >
-                        Company*
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
-                        placeholder="Ex: Google"
-                        onChange={this.onCompanyInput}
-                        value={this.state.main.middleform.job.company}
-                      />
-                    </div>
-                    <div className="workexperience--row flex flex-col mx-4 mb-4">
-                      <label
-                        htmlFor="job--startdate"
-                        className="text-white text-lg mb-2"
-                      >
-                        Start Date
-                      </label>
-                      <div className="startdate--container flex">
-                        <select
-                          name="job--startdate"
-                          id="job--startdate"
-                          className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
-                          onChange={this.onStartMonthInput}
-                          value={this.state.main.middleform.job.startdate.month}
-                        >
-                          <option value="" hidden>
-                            Month
-                          </option>
-                          <option value="January">January</option>
-                          <option value="February">February</option>
-                          <option value="March">March</option>
-                          <option value="April">April</option>
-                          <option value="May">May</option>
-                          <option value="June">June</option>
-                          <option value="July">July</option>
-                          <option value="August">August</option>
-                          <option value="September">September</option>
-                          <option value="October">October</option>
-                          <option value="November">November</option>
-                          <option value="December">December</option>
-                        </select>
-                        <select
-                          name="job--startyear"
-                          id="job--startyear required"
-                          className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
-                          onChange={this.onStartYearInput}
-                          required
-                          value={this.state.main.middleform.job.startdate.year}
-                        >
-                          <option value="" hidden>
-                            Year*
-                          </option>
-                          <option value="2010">2010</option>
-                          <option value="2011">2011</option>
-                          <option value="2012">2012</option>
-                          <option value="2013">2013</option>
-                          <option value="2014">2014</option>
-                          <option value="2015">2015</option>
-                          <option value="2016">2016</option>
-                          <option value="2017">2017</option>
-                          <option value="2018">2018</option>
-                          <option value="2019">2019</option>
-                          <option value="2020">2020</option>
-                          <option value="2021">2021</option>
-                          <option value="2022">2022</option>
-                        </select>
-                      </div>
-                      <div className="job--noenddatecontainer flex mt-6 mb-1">
-                        <input
-                          type="checkbox"
-                          id="job--noenddate"
-                          className="bg-white rounded-lg p-2 text-lg mr-2"
-                          onChange={this.onJobOngoingCheckboxInput}
-                        />
-                        <label
-                          htmlFor="job--noenddate"
-                          className="text-white text-lg"
-                        >
-                          I am currently working in this role
-                        </label>
-                      </div>
-
-                      <label
-                        htmlFor="job--enddate"
-                        className="text-white text-lg"
-                      >
-                        End Date
-                      </label>
-                      <div className="enddate--container flex mt-2">
-                        <select
-                          disabled={
-                            this.state.main.middleform.job.enddate.ongoing
-                          }
-                          name="job--enddate"
-                          id="job--enddate"
-                          className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
-                          onChange={this.onEndMonthInput}
-                          value={this.state.main.middleform.job.enddate.month}
-                        >
-                          <option value="" hidden>
-                            Month
-                          </option>
-                          <option value="January">January</option>
-                          <option value="February">February</option>
-                          <option value="March">March</option>
-                          <option value="April">April</option>
-                          <option value="May">May</option>
-                          <option value="June">June</option>
-                          <option value="July">July</option>
-                          <option value="August">August</option>
-                          <option value="September">September</option>
-                          <option value="October">October</option>
-                          <option value="November">November</option>
-                          <option value="December">December</option>
-                        </select>
-                        <select
-                          disabled={
-                            this.state.main.middleform.job.enddate.ongoing
-                          }
-                          name="job--endyear"
-                          id="job--endyear"
-                          className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
-                          required
-                          onChange={this.onEndYearInput}
-                          value={this.state.main.middleform.job.enddate.year}
-                        >
-                          <option value="" hidden>
-                            Year*
-                          </option>
-                          <option value="2010">2010</option>
-                          <option value="2011">2011</option>
-                          <option value="2012">2012</option>
-                          <option value="2013">2013</option>
-                          <option value="2014">2014</option>
-                          <option value="2015">2015</option>
-                          <option value="2016">2016</option>
-                          <option value="2017">2017</option>
-                          <option value="2018">2018</option>
-                          <option value="2019">2019</option>
-                          <option value="2020">2020</option>
-                          <option value="2021">2021</option>
-                          <option value="2022">2022</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className="workexperience--row flex flex-col mx-4 mb-4">
-                      <label
-                        htmlFor="job--description"
-                        className="text-white text-lg"
-                      >
-                        Description
-                      </label>
-                      <textarea
-                        rows="3"
-                        cols="115"
-                        className="job--description resize-none bg-white  rounded-lg px-4 text-lg mb-5 mt-2"
-                        maxLength="280"
-                        minLength="80"
-                        onChange={this.onCompanyDescriptionInput}
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="bg-white text-green-300 py-1 px-4 ml-4 text-lg rounded-lg mb-4"
-                      on
-                    >
-                      Add
-                    </button>
-                  </div>
-                  <div className="jobform--userinput flex  flex-col mb-5 mx-4 mt-5 rounded-lg bg-white pt-12 px-12 ">
-                    {this.state.main.middleform.jobs.map((job) => (
-                      <div
-                        className="job--container bg-gray-100 p-4 rounded-lg mb-12"
-                        key={job.key}
-                      >
-                        <h3 className="job--title font-medium  px-4 text-2xl my-2">
-                          {job.title}
-                        </h3>
-                        <p className="job--company px-4 text-xl my-1 font-medium">
-                          {job.company}
-                        </p>
-                        <p className="job--startenddates px-4 text-gray-400">
-                          {job.startdate.month} {job.startdate.year} -
-                          {job.enddate.ongoing
-                            ? " Present"
-                            : ` ${job.enddate.month} ${job.enddate.year}`}
-                        </p>
-                        {job.description ? (
-                          <p className="job--description px-4 mt-1">
-                            {job.description}
-                          </p>
-                        ) : null}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div className="main--bottomform w-11/12 mt-12 mr-auto ml-auto">
-              <form action="" onSubmit={this.onSubmitToEducationList}>
-                <div className="form--formrow flex flex-col flex-start bg-green-300 p-4 rounded-lg">
-                  <p className="formrow--title bordbot--none mb-2 text-2xl text-white">
-                    Education
-                  </p>
-                  <div className="form--education">
-                    <div className="education--row flex flex-col mx-4 mb-4">
-                      <label
-                        htmlFor="education--school"
-                        className="text-white text-lg"
-                      >
-                        School*
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
-                        placeholder="Ex: Bucharest Univeristy"
-                        onChange={this.onSchoolInput}
-                        value={this.state.main.bottomform.education.school}
-                      />
-                    </div>
-                    <div className="education--row flex flex-col mx-4 mb-4">
-                      <label
-                        htmlFor="education--degree"
-                        className="text-white text-lg"
-                      >
-                        Degree
-                      </label>
-                      <input
-                        type="text"
-                        className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
-                        placeholder="Ex: Bachelors"
-                        onChange={this.onDegreeInput}
-                        value={this.state.main.bottomform.education.degree}
-                      />
-                    </div>
-                    <div className="education--row flex flex-col mx-4 mb-4">
-                      <label
-                        htmlFor="education--field"
-                        className="text-white text-lg"
-                      >
-                        Field
-                      </label>
-                      <input
-                        type="text"
-                        className="w-3/12 bg-white p-1 rounded-lg px-4 text-lg mb-2 mt-2"
-                        placeholder="Ex: Chemistry"
-                        onChange={this.onFieldInput}
-                        value={this.state.main.bottomform.education.field}
-                      />
-                    </div>
-                    <div className="education--row flex flex-col mx-4 mb-4">
-                      <label
-                        htmlFor="education--startdate"
-                        className="text-white text-lg mb-2"
-                      >
-                        Start Date
-                      </label>
-                      <div className="startdate--container flex">
-                        <select
-                          name="education--startdate"
-                          id="education--startdate"
-                          className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
-                          onChange={this.onStartEducationMonthInput}
-                          value={
-                            this.state.main.bottomform.education.startdate.month
-                          }
-                        >
-                          <option value="" hidden>
-                            Month
-                          </option>
-                          <option value="January">January</option>
-                          <option value="February">February</option>
-                          <option value="March">March</option>
-                          <option value="April">April</option>
-                          <option value="May">May</option>
-                          <option value="June">June</option>
-                          <option value="July">July</option>
-                          <option value="August">August</option>
-                          <option value="September">September</option>
-                          <option value="October">October</option>
-                          <option value="November">November</option>
-                          <option value="December">December</option>
-                        </select>
-                        <select
-                          name="education--startyear"
-                          id="education--startyear"
-                          className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
-                          required
-                          onChange={this.onStartEducationYearInput}
-                          value={
-                            this.state.main.bottomform.education.startdate.year
-                          }
-                        >
-                          <option value="" hidden>
-                            Year*
-                          </option>
-                          <option value="2010">2010</option>
-                          <option value="2011">2011</option>
-                          <option value="2012">2012</option>
-                          <option value="2013">2013</option>
-                          <option value="2014">2014</option>
-                          <option value="2015">2015</option>
-                          <option value="2016">2016</option>
-                          <option value="2017">2017</option>
-                          <option value="2018">2018</option>
-                          <option value="2019">2019</option>
-                          <option value="2020">2020</option>
-                          <option value="2021">2021</option>
-                          <option value="2022">2022</option>
-                        </select>
-                      </div>
-
-                      <label
-                        htmlFor="education--enddate"
-                        className="text-white text-lg"
-                      >
-                        End Date
-                      </label>
-                      <div className="enddate--container flex mt-2">
-                        <select
-                          name="education--enddate"
-                          id="education--enddate"
-                          className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
-                          onChange={this.onEndEducationMonthInput}
-                          value={
-                            this.state.main.bottomform.education.enddate.month
-                          }
-                        >
-                          <option value="" hidden>
-                            Month
-                          </option>
-                          <option value="January">January</option>
-                          <option value="February">February</option>
-                          <option value="March">March</option>
-                          <option value="April">April</option>
-                          <option value="May">May</option>
-                          <option value="June">June</option>
-                          <option value="July">July</option>
-                          <option value="August">August</option>
-                          <option value="September">September</option>
-                          <option value="October">October</option>
-                          <option value="November">November</option>
-                          <option value="December">December</option>
-                        </select>
-                        <select
-                          name="education--endyear"
-                          id="education--endyear"
-                          className="bg-white p-1 rounded-lg px-2 text-lg mr-4"
-                          required
-                          onChange={this.onEndEducationYearInput}
-                          value={
-                            this.state.main.bottomform.education.enddate.year
-                          }
-                        >
-                          <option value="" hidden>
-                            Year*
-                          </option>
-                          <option value="2010">2010</option>
-                          <option value="2011">2011</option>
-                          <option value="2012">2012</option>
-                          <option value="2013">2013</option>
-                          <option value="2014">2014</option>
-                          <option value="2015">2015</option>
-                          <option value="2016">2016</option>
-                          <option value="2017">2017</option>
-                          <option value="2018">2018</option>
-                          <option value="2019">2019</option>
-                          <option value="2020">2020</option>
-                          <option value="2021">2021</option>
-                          <option value="2022">2022</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className="education--row flex flex-col mx-4 mb-4">
-                      <label
-                        htmlFor="education--description"
-                        className="text-white text-lg"
-                      >
-                        Description
-                      </label>
-                      <textarea
-                        rows="3"
-                        cols="115"
-                        className="education--description resize-none bg-white  rounded-lg px-4 text-lg mb-5 mt-2"
-                        maxLength="280"
-                        minLength="80"
-                        onChange={this.onEducationDescriptionInput}
-                        value={this.state.main.bottomform.education.description}
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="bg-white text-green-300 py-1 px-4 ml-4 text-lg rounded-lg mb-4"
-                      on
-                    >
-                      Add
-                    </button>
-                  </div>
-                  <div className="education--userinput flex  flex-col mb-5 mx-4 mt-5 rounded-lg bg-white pt-12 px-12 ">
-                    {this.state.main.bottomform.educationArr.map(
-                      (education) => (
-                        <div
-                          className="education--container bg-gray-100 p-4 rounded-lg mb-12"
-                          key={education.key}
-                        >
-                          <h3 className="education--school font-medium  px-4 text-2xl my-2">
-                            {education.school}
-                          </h3>
-                          <p className="education--degreeandfield px-4 text-lg my-1 font-medium">
-                            {education.degree} in {education.field}
-                          </p>
-                          <p className="education--startenddates px-4 text-gray-400">
-                            {education.startdate.month}{" "}
-                            {education.startdate.year} -{" "}
-                            {education.enddate.month} {education.enddate.year}
-                          </p>
-                          {education.description ? (
-                            <p className="education--description px-4 mt-1">
-                              {education.description}
-                            </p>
-                          ) : null}
-                        </div>
-                      )
-                    )}
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+          <Main
+            {...this.state.main}
+            onSubmitToSkillsList={this.onSubmitToSkillsList}
+            onSummaryInput={this.onSummaryInput}
+            onSkillInput={this.onSkillInput}
+            onSubmitToJobsList={this.onSubmitToJobsList}
+            onTitleInput={this.onTitleInput}
+            onCompanyInput={this.onCompanyInput}
+            onStartMonthInput={this.onStartMonthInput}
+            onStartYearInput={this.onStartYearInput}
+            onJobOngoingCheckboxInput={this.onJobOngoingCheckboxInput}
+            onEndMonthInput={this.onEndMonthInput}
+            onEndYearInput={this.onEndYearInput}
+            onCompanyDescriptionInput={this.onCompanyDescriptionInput}
+            onSubmitToEducationList={this.onSubmitToEducationList}
+            onSchoolInput={this.onSchoolInput}
+            onDegreeInput={this.onDegreeInput}
+            onFieldInput={this.onFieldInput}
+            onStartEducationMonthInput={this.onStartEducationMonthInput}
+            onStartEducationYearInput={this.onStartEducationYearInput}
+            onEndEducationMonthInput={this.onEndEducationMonthInput}
+            onEndEducationYearInput={this.onEndEducationYearInput}
+            onEducationDescriptionInput={this.onEducationDescriptionInput}
+          />
         </div>
         <div className="footer"></div>
       </div>

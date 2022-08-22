@@ -12,7 +12,7 @@ class Sidebar extends Component {
               <input
                 type="text"
                 value={this.props.topRow.name}
-                onChange={this.props.onNameInputUpdate}
+                onInput={this.props.onNameInputUpdate}
                 placeholder="Your name*"
                 className="user--name bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
                 required
@@ -24,7 +24,7 @@ class Sidebar extends Component {
                     type="file"
                     name="uploadfile"
                     id="img"
-                    onChange={this.props.onImgUpload}
+                    onInput={this.props.onImgUpload}
                     style={{ display: "none" }}
                     accept=".jpg,.jpeg"
                   />
@@ -63,7 +63,7 @@ class Sidebar extends Component {
                 className="user--email bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
                 placeholder="your@email.com*"
                 minLength={7}
-                onChange={this.props.onEmailInput}
+                onInput={this.props.onEmailInput}
               />
               <input
                 type="tel"
@@ -72,28 +72,28 @@ class Sidebar extends Component {
                 placeholder="0123 456 789*"
                 pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}"
                 maxLength={10}
-                onChange={this.props.onPhoneNumberInput}
+                onInput={this.props.onPhoneNumberInput}
               />
               <input
                 type="url"
                 required
                 className="user--linkedin bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
                 placeholder="Linkedin"
-                onChange={this.props.onLinkedinInput}
+                onInput={this.props.onLinkedinInput}
               />
               <input
                 type="url"
                 required
                 className="user--github user--contactinput bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
                 placeholder="GitHub"
-                onChange={this.props.onGitHubInput}
+                onInput={this.props.onGitHubInput}
               />
               <input
                 type="text"
                 required
                 className="user--address bg-gray-100 p-1 rounded-lg px-4 text-lg"
                 placeholder="Address"
-                onChange={this.props.onAddressInput}
+                onInput={this.props.onAddressInput}
               />
             </div>
           </form>
