@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import uniqid from "uniqid";
 import "./App.css";
 import Nav from "./Components/App/Nav/Nav";
+import Sidebar from "./Components/App/Sidebar/Sidebar";
 
 class App extends Component {
   constructor(props) {
@@ -101,7 +102,6 @@ class App extends Component {
       },
       file: null,
     };
-    /*
     this.onSubmitToSkillsList = this.onSubmitToSkillsList.bind(this);
     this.onImgUpload = this.onImgUpload.bind(this);
     this.onEmailInput = this.onEmailInput.bind(this);
@@ -118,10 +118,9 @@ class App extends Component {
     this.onEndMonthInput = this.onEndMonthInput.bind(this);
     this.onEndYearInput = this.onEndYearInput.bind(this);
     this.onCompanyDescriptionInput = this.onCompanyDescriptionInput.bind(this);
-    */
     this.switchMode = this.switchMode.bind(this);
   }
-
+  // nav methods
   switchMode = (e) =>
     e.target.checked
       ? this.setState({ mode: "previewing" })
@@ -708,100 +707,16 @@ class App extends Component {
       <div className="App">
         <Nav mode={this.state.mode} switchMode={this.switchMode} />
         <div className="main w-full bg-green-400 flex">
-          <div className="main--sidebar w-1/5 p-10 bg-white">
-            <div className="sidebar--form--container">
-              <form action="" className="sidebar--form">
-                <div className="flex flex-col align-center mb-5 justify-center">
-                  <input
-                    type="text"
-                    value={this.state.sidebar.topRow.name}
-                    onChange={this.onNameInputUpdate}
-                    placeholder="Your name*"
-                    className="user--name bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
-                    required
-                    maxLength="20"
-                  />
-                  {this.state.sidebar.topRow.imgFile ? null : (
-                    <div className="flex align-center justify-center">
-                      <input
-                        type="file"
-                        name="uploadfile"
-                        id="img"
-                        onChange={this.onImgUpload}
-                        style={{ display: "none" }}
-                        accept=".jpg,.jpeg"
-                      />
-                      <label
-                        htmlFor="img"
-                        className="bg-green-300 text-white px-6 py-3 text-lg rounded-lg"
-                      >
-                        Upload an image
-                      </label>
-                    </div>
-                  )}
-                  {this.state.sidebar.topRow.imgFile ? (
-                    <div
-                      style={{
-                        backgroundImage: `url(${this.state.sidebar.topRow.imgFile})`,
-                      }}
-                      className="user--imagecontainer h-48 w-48 mt-5 py-1 px-4 self-center bg-center rounded-full"
-                      required
-                    />
-                  ) : (
-                    <div
-                      input={this.state.sidebar.topRow.imgFile}
-                      className="user--imagecontainer mt-5 self-center"
-                      required
-                      style={{ visibility: "hidden" }}
-                    />
-                  )}
-                </div>
-                <div className="flex flex-col">
-                  <p className="formrow--title text-lg float-right text-end mb-5">
-                    Contact
-                  </p>
-                  <input
-                    type="email"
-                    required
-                    className="user--email bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
-                    placeholder="your@email.com*"
-                    minLength={7}
-                    onInput={this.onEmailInput}
-                  />
-                  <input
-                    type="tel"
-                    required
-                    className="user--number bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
-                    placeholder="0123 456 789*"
-                    pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}"
-                    maxLength={10}
-                    onInput={this.onPhoneNumberInput}
-                  />
-                  <input
-                    type="url"
-                    required
-                    className="user--linkedin bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
-                    placeholder="Linkedin"
-                    onInput={this.onLinkedinInput}
-                  />
-                  <input
-                    type="url"
-                    required
-                    className="user--github user--contactinput bg-gray-100 p-1 rounded-lg px-4 text-lg mb-5"
-                    placeholder="GitHub"
-                    onInput={this.onGitHubInput}
-                  />
-                  <input
-                    type="text"
-                    required
-                    className="user--address bg-gray-100 p-1 rounded-lg px-4 text-lg"
-                    placeholder="Address"
-                    onInput={this.onAddressInput}
-                  />
-                </div>
-              </form>
-            </div>
-          </div>
+          <Sidebar
+            {...this.state.sidebar}
+            onNameInputUpdate={this.onNameInputUpdate}
+            onImgUpload={this.onImgUpload}
+            onEmailInput={this.onEmailInput}
+            onPhoneNumberInput={this.onPhoneNumberInput}
+            onLinkedinInput={this.onLinkedinInput}
+            onGitHubInput={this.onGitHubInput}
+            onAddressInput={this.onAddressInput}
+          />
           <div className="main--app flex w-11/12 align-center flex-col">
             <div className="main--topform w-11/12 mt-12 mr-auto ml-auto bg-green-300 p-4 rounded-lg">
               <form action="" onSubmit={this.onSubmitToSkillsList}>
