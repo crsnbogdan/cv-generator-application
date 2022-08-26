@@ -25,11 +25,11 @@ class Sidebar extends Component {
                   id="img"
                   onInput={this.props.onImgUpload}
                   style={{ display: "none" }}
-                  accept=".jpg,.jpeg"
+                  accept=".jpg,.jpeg,.png"
                 />
                 <label
                   htmlFor="img"
-                  className="bg-white text-purple-600 px-6 py-3 text-lg w-full hover:cursor-pointer"
+                  className="bg-white text-blue-400 px-6 py-3 text-lg w-full hover:cursor-pointer"
                 >
                   Upload an image
                 </label>
@@ -60,6 +60,7 @@ class Sidebar extends Component {
               className="user--email   p-1   px-4 text-lg mb-5"
               placeholder="your@email.com*"
               minLength={7}
+              pattern=""
               onInput={this.props.onEmailInput}
             />
             <input
@@ -98,13 +99,13 @@ class Sidebar extends Component {
     );
     if (this.props.mode === "editing") {
       return (
-        <div className="main--sidebar w-1/5 p-10 bg-purple-600 relative">
+        <div className="main--sidebar w-1/5 p-10 bg-blue-400 relative">
           {sidebar}
         </div>
       );
     } else {
       return (
-        <div className="main--sidebar blurred w-1/5 p-10 bg-purple-600 relative">
+        <div className="main--sidebar blurred w-1/5 p-10 bg-blue-400 relative">
           {sidebar}
         </div>
       );

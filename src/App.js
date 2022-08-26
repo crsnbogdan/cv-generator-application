@@ -6,7 +6,6 @@ import Main from "./Components/App/Main/Main";
 import Nav from "./Components/App/Nav/Nav";
 import Sidebar from "./Components/App/Sidebar/Sidebar";
 import RApp from "./Components/RenderedApp/RApp";
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -90,6 +89,7 @@ class App extends Component {
     this.onCompanyDescriptionInput = this.onCompanyDescriptionInput.bind(this);
     this.switchMode = this.switchMode.bind(this);
   }
+
   // nav methods
   switchMode = (e) =>
     e.target.checked
@@ -139,7 +139,7 @@ class App extends Component {
         topRow: this.state.sidebar.topRow,
         bottomRow: {
           email: this.state.sidebar.bottomRow.email,
-          phoneNumber: e.target.value,
+          phoneNumber: e.target.value.replace(/\D/g, ""),
           linkedin: this.state.sidebar.bottomRow.linkedin,
           github: this.state.sidebar.bottomRow.github,
           address: this.state.sidebar.bottomRow.address,
@@ -205,7 +205,7 @@ class App extends Component {
       },
     });
   };
-  onSkillInput = (e) =>
+  onSkillInput = (e) => {
     this.setState({
       sidebar: this.state.sidebar,
       main: {
@@ -221,6 +221,7 @@ class App extends Component {
         bottomform: this.state.main.bottomform,
       },
     });
+  };
 
   // main middle form methods
   onTitleInput = (e) =>
@@ -588,6 +589,7 @@ class App extends Component {
   // submit methods
   onSubmitToSkillsList = (e) => {
     e.preventDefault();
+    if (this.state.main.topform.skill.skillname.length === 0) return;
     if (this.state.main.topform.skills.length >= 8) return;
     this.setState({
       sidebar: this.state.sidebar,
@@ -656,7 +658,7 @@ class App extends Component {
               year: "",
             },
             enddate: {
-              ongoing: true,
+              ongoing: false,
               month: "",
               year: "",
             },
@@ -669,6 +671,159 @@ class App extends Component {
     });
   };
 
+  printDocument = () => {
+    let target = document.getElementById("rendered--cv");
+    let printTargetContent = target.innerHTML;
+    let originalContent = document.body.innerHTML;
+    document.body.innerHTML = printTargetContent;
+    window.print();
+    document.body.innerHTML = originalContent;
+    window.location.reload();
+  };
+
+  // remove input methods
+  removeLastSkillInput = () => {
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: {
+          skills: this.state.main.topform.skills.splice(-1),
+          skill: {
+            skillname: "",
+            key: uniqid(),
+          },
+          summary: this.state.main.topform.summary,
+        },
+        middleform: this.state.main.middleform,
+        bottomform: this.state.main.bottomform,
+      },
+    });
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: {
+          skills: this.state.main.topform.skills,
+          skill: {
+            skillname: "",
+            key: uniqid(),
+          },
+          summary: this.state.main.topform.summary,
+        },
+        middleform: this.state.main.middleform,
+        bottomform: this.state.main.bottomform,
+      },
+    });
+    console.log(this.state);
+  };
+  removeLastJobInput = (e) => {
+    e.preventDefault();
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: {
+          jobs: this.state.main.middleform.jobs.splice(-1),
+          job: {
+            title: "",
+            company: "",
+            startdate: {
+              month: "",
+              year: "",
+            },
+            enddate: {
+              ongoing: true,
+              month: "",
+              year: "",
+            },
+            description: "",
+            key: uniqid(),
+          },
+        },
+        bottomform: this.state.main.bottomform,
+      },
+    });
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: {
+          jobs: this.state.main.middleform.jobs,
+          job: {
+            title: "",
+            company: "",
+            startdate: {
+              month: "",
+              year: "",
+            },
+            enddate: {
+              ongoing: true,
+              month: "",
+              year: "",
+            },
+            description: "",
+            key: uniqid(),
+          },
+        },
+        bottomform: this.state.main.bottomform,
+      },
+    });
+  };
+  removeLastEducationInput = (e) => {
+    e.preventDefault();
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: this.state.main.middleform,
+
+        bottomform: {
+          educationArr: this.state.main.bottomform.educationArr.splice(-1),
+          education: {
+            school: "",
+            degree: "",
+            field: "",
+            startdate: {
+              month: "",
+              year: "",
+            },
+            enddate: {
+              month: "",
+              year: "",
+            },
+            description: "",
+            key: uniqid(),
+          },
+        },
+      },
+    });
+    this.setState({
+      sidebar: this.state.sidebar,
+      main: {
+        topform: this.state.main.topform,
+        middleform: this.state.main.middleform,
+
+        bottomform: {
+          educationArr: this.state.main.bottomform.educationArr,
+          education: {
+            school: "",
+            degree: "",
+            field: "",
+            startdate: {
+              month: "",
+              year: "",
+            },
+            enddate: {
+              month: "",
+              year: "",
+            },
+            description: "",
+            key: uniqid(),
+          },
+        },
+      },
+    });
+  };
+
   render() {
     return (
       <div className="App relative">
@@ -677,7 +832,7 @@ class App extends Component {
         ) : null}
 
         <Nav mode={this.state.mode} switchMode={this.switchMode} />
-        <div className="main w-full bg-purple-600 flex">
+        <div className="main w-full bg-blue-400 flex">
           <Sidebar
             {...this.state.sidebar}
             onNameInputUpdate={this.onNameInputUpdate}
@@ -713,13 +868,15 @@ class App extends Component {
             onEndEducationMonthInput={this.onEndEducationMonthInput}
             onEndEducationYearInput={this.onEndEducationYearInput}
             onEducationDescriptionInput={this.onEducationDescriptionInput}
+            removeLastSkill={this.removeLastSkillInput}
+            removeLastEducationInput={this.removeLastEducationInput}
+            removeLastJobInput={this.removeLastJobInput}
           />
         </div>
-        <Footer />
+        <Footer generatePDFFunc={this.printDocument} mode={this.state.mode} />
       </div>
     );
   }
-  e;
 }
 
 export default App;

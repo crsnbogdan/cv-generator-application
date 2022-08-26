@@ -29,7 +29,7 @@ label.switchLabel:after {
 }
 
 input:checked:not(#job--noenddate) + label.switchLabel {
-  background: #9333ea;
+  background: rgb(96 165 250);
 }
 
 input:checked:not(#job--noenddate) + label.switchLabel:after {

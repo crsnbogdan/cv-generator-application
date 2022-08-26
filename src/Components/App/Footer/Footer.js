@@ -6,19 +6,23 @@ class Footer extends Component {
   state = {};
   render() {
     return (
-      <div className="footer flex align-center justify-center p-10">
+      <footer className="footer flex align-center justify-center p-10">
         <div className="inline-flex flex-col">
+          {this.props.mode === "previewing" ? (
+            <button
+              id="footer-downloadbtn"
+              className=" bg-blue-400 text-white px-6 py-3 text-lg rounded-lg mb-6"
+              onClick={this.props.generatePDFFunc}
+            >
+              Print CV
+            </button>
+          ) : null}
           <p className="footer--text text-lg">
-            <span className="text-purple-600">
-              © {new Date().getFullYear()}
-            </span>{" "}
+            <span className="text-blue-400">© {new Date().getFullYear()}</span>{" "}
             - Crisan Bogdan
           </p>
-          <button className="footer-downloadbtn bg-purple-600 text-white px-6 py-3 text-lg rounded-lg mt-2">
-            Download PDF
-          </button>
         </div>
-      </div>
+      </footer>
     );
   }
 }

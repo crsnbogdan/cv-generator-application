@@ -3,7 +3,16 @@ import "./Main.css";
 class Main extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      jobOngoingCheckbox: false,
+    };
   }
+  switchJobOngoingCheckboxToTrue = () => {
+    this.setState({ jobOngoingCheckbox: true });
+  };
+  switchJobOngoingCheckboxToFalse = () => {
+    this.setState({ jobOngoingCheckbox: false });
+  };
   render() {
     let main = (
       <>
@@ -14,12 +23,11 @@ class Main extends Component {
                 About you
               </h3>
               <p className="formrow--title bordbot--none mb-2 ml-4 text-white text-xl">
-                Summary*
+                Summary
               </p>
               <textarea
                 rows="3"
                 cols="115"
-                required
                 className="user--summary resize-none bg-white p-1  px-4 text-lg mb-5 mx-4"
                 onInput={this.props.onSummaryInput}
                 maxLength="280"
@@ -39,20 +47,28 @@ class Main extends Component {
                 />
                 <button
                   type="submit"
-                  className="bg-white text-purple-600 px-4 py-1 text-lg "
+                  className="bg-white text-blue-400 px-4 py-1 text-lg "
                 >
                   Add
                 </button>
+                <button
+                  onClick={this.props.removeLastSkill}
+                  className="bg-white text-blue-400 px-4 py-1 text-lg ml-5"
+                >
+                  Remove last entry
+                </button>
               </div>
-              <div className="skillsform--userinput flex min-h-fit mb-5 mx-4 mt-5  bg-white p-12">
-                <ul className="userinput--list grid pr-3 mx-4">
-                  {this.props.topform.skills.map((skill) => (
-                    <li className="userinput--skill text-black">
-                      {skill.skillname}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {this.props.topform.skills.length >= 1 ? (
+                <div className="skillsform--userinput flex min-h-fit mb-5 mx-4 mt-5  bg-white p-12">
+                  <ul className="userinput--list grid pr-3 mx-4">
+                    {this.props.topform.skills.map((skill) => (
+                      <li className="userinput--skill text-black">
+                        {skill.skillname}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
             </div>
           </form>
         </div>
@@ -152,6 +168,12 @@ class Main extends Component {
                       id="job--noenddate"
                       className="bg-white  p-2 text-lg mr-2"
                       onChange={this.props.onJobOngoingCheckboxInput}
+                      onClick={
+                        this.state.jobOngoingCheckbox === true
+                          ? this.switchJobOngoingCheckboxToFalse
+                          : this.switchJobOngoingCheckboxToTrue
+                      }
+                      checked={this.state.jobOngoingCheckbox}
                     />
                     <label
                       htmlFor="job--noenddate"
@@ -229,44 +251,51 @@ class Main extends Component {
                     cols="115"
                     className="job--description resize-none bg-white   px-4 text-lg mb-5 mt-2"
                     maxLength="280"
-                    minLength="20"
                     onChange={this.props.onCompanyDescriptionInput}
                   />
                 </div>
                 <button
                   type="submit"
-                  className="bg-white text-purple-600 py-1 px-4 ml-4 text-lg  mb-4"
-                  on
+                  className="bg-white text-blue-400 py-1 px-4 ml-4 text-lg  mb-4"
+                  onClick={this.switchJobOngoingCheckboxToFalse}
                 >
                   Add
                 </button>
+                <button
+                  className="bg-white text-blue-400 py-1 px-4 ml-4 text-lg  mb-4"
+                  onClick={this.props.removeLastJobInput}
+                >
+                  Remove last entry
+                </button>
               </div>
-              <div className="jobform--userinput flex  flex-col mb-5 mx-4 mt-5  bg-white pt-12 px-12 ">
-                {this.props.middleform.jobs.map((job) => (
-                  <div
-                    className="job--container bg-gray-100 p-4  mb-12"
-                    key={job.key}
-                  >
-                    <h3 className="job--title font-medium  px-4 text-2xl my-2">
-                      {job.title}
-                    </h3>
-                    <p className="job--company px-4 text-xl my-1 font-medium">
-                      {job.company}
-                    </p>
-                    <p className="job--startenddates px-4 text-gray-400">
-                      {job.startdate.month} {job.startdate.year} -
-                      {job.enddate.ongoing
-                        ? " Present"
-                        : ` ${job.enddate.month} ${job.enddate.year}`}
-                    </p>
-                    {job.description ? (
-                      <p className="job--description px-4 mt-1">
-                        {job.description}
+              {this.props.middleform.jobs.length >= 1 ? (
+                <div className="jobform--userinput flex  flex-col mb-5 mx-4 mt-5  bg-white pt-12 px-12 ">
+                  {this.props.middleform.jobs.map((job) => (
+                    <div
+                      className="job--container bg-gray-100 p-4  mb-12"
+                      key={job.key}
+                    >
+                      <h3 className="job--title font-medium  px-4 text-2xl my-2">
+                        {job.title}
+                      </h3>
+                      <p className="job--company px-4 text-xl my-1 font-medium">
+                        {job.company}
                       </p>
-                    ) : null}
-                  </div>
-                ))}
-              </div>
+                      <p className="job--startenddates px-4 text-gray-400">
+                        {job.startdate.month} {job.startdate.year} -
+                        {job.enddate.ongoing
+                          ? " Present"
+                          : ` ${job.enddate.month} ${job.enddate.year}`}
+                      </p>
+                      {job.description ? (
+                        <p className="job--description px-4 mt-1">
+                          {job.description}
+                        </p>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              ) : null}
             </div>
           </form>
         </div>
@@ -450,43 +479,50 @@ class Main extends Component {
                     cols="115"
                     className="education--description resize-none bg-white   px-4 text-lg mb-5 mt-2"
                     maxLength="280"
-                    minLength="20"
                     onChange={this.props.onEducationDescriptionInput}
                     value={this.props.bottomform.education.description}
                   />
                 </div>
                 <button
                   type="submit"
-                  className="bg-white text-purple-600 py-1 px-4 ml-4 text-lg  mb-4"
-                  on
+                  className="bg-white text-blue-400 py-1 px-4 ml-4 text-lg  mb-4"
                 >
                   Add
                 </button>
+                <button
+                  className="bg-white text-blue-400 py-1 px-4 ml-4 text-lg  mb-4"
+                  onClick={this.props.removeLastEducationInput}
+                >
+                  Remove last entry
+                </button>
               </div>
-              <div className="education--userinput flex  flex-col mb-5 mx-4 mt-5  bg-white pt-12 px-12 ">
-                {this.props.bottomform.educationArr.map((education) => (
-                  <div
-                    className="education--container bg-gray-100 p-4  mb-12"
-                    key={education.key}
-                  >
-                    <h3 className="education--school font-medium  px-4 text-2xl my-2">
-                      {education.school}
-                    </h3>
-                    <p className="education--degreeandfield px-4 text-lg my-1 font-medium">
-                      {education.degree} in {education.field}
-                    </p>
-                    <p className="education--startenddates px-4 text-gray-400">
-                      {education.startdate.month} {education.startdate.year} -{" "}
-                      {education.enddate.month} {education.enddate.year}
-                    </p>
-                    {education.description ? (
-                      <p className="education--description px-4 mt-1">
-                        {education.description}
+
+              {this.props.bottomform.educationArr.length >= 1 ? (
+                <div className="education--userinput flex  flex-col mb-5 mx-4 mt-5  bg-white pt-12 px-12 ">
+                  {this.props.bottomform.educationArr.map((education) => (
+                    <div
+                      className="education--container bg-gray-100 p-4  mb-12"
+                      key={education.key}
+                    >
+                      <h3 className="education--school font-medium  px-4 text-2xl my-2">
+                        {education.school}
+                      </h3>
+                      <p className="education--degreeandfield px-4 text-lg my-1 font-medium">
+                        {education.degree} in {education.field}
                       </p>
-                    ) : null}
-                  </div>
-                ))}
-              </div>
+                      <p className="education--startenddates px-4 text-gray-400">
+                        {education.startdate.month} {education.startdate.year} -{" "}
+                        {education.enddate.month} {education.enddate.year}
+                      </p>
+                      {education.description ? (
+                        <p className="education--description px-4 mt-1">
+                          {education.description}
+                        </p>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              ) : null}
             </div>
           </form>
         </div>
