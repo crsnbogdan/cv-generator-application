@@ -251,6 +251,7 @@ class Main extends Component {
                     cols="115"
                     className="job--description resize-none bg-white   px-4 text-lg mb-5 mt-2"
                     maxLength="280"
+                    value={this.props.middleform.job.description}
                     onChange={this.props.onCompanyDescriptionInput}
                   />
                 </div>
