@@ -5,7 +5,7 @@ input[type="checkbox"]:not(#job--noenddate) {
   visibility: hidden;
 }
 
-label.switchLabel {
+label.nav__modetoggle--switchlabel {
   cursor: pointer;
   text-indent: -9999px;
   width: 200px;
@@ -16,7 +16,7 @@ label.switchLabel {
   position: relative;
 }
 
-label.switchLabel:after {
+label.nav__modetoggle--switchlabel:after {
   content: "";
   position: absolute;
   top: 5px;
@@ -28,20 +28,20 @@ label.switchLabel:after {
   transition: 0.3s;
 }
 
-input:checked:not(#job--noenddate) + label.switchLabel {
+input:checked:not(#job--noenddate) + label.nav__modetoggle--switchlabel {
   background: rgb(96 165 250);
 }
 
-input:checked:not(#job--noenddate) + label.switchLabel:after {
+input:checked:not(#job--noenddate) + label.nav__modetoggle--switchlabel:after {
   left: calc(100% - 5px);
   transform: translateX(-100%);
 }
 
-label.switchLabel:active:after {
+label.nav__modetoggle--switchlabel:active:after {
   width: 130px;
 }
 
-label.switchLabel,
+label.nav__modetoggle--switchlabel,
 input#switch {
   transform: scale(0.3);
 }
@@ -51,7 +51,7 @@ input#switch {
   -webkit-box-shadow: 25px 0px 88px -31px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 25px 0px 88px -31px rgba(0, 0, 0, 0.25);
 }
-.nav .modetoggle {
+.nav .nav__modetoggle {
   max-width: 130px;
   transform: translateY(-10px);
 }
