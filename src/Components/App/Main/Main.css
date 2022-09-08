@@ -1,7 +1,6 @@
 /**************Main**************/
 .main {
   max-width: 100vw;
-  min-height: 100vh;
 }
 
 .main__sidebar,
@@ -20,6 +19,9 @@ span.MuiTouchRipple-root.css-8je8zh-MuiTouchRipple-root,
 }
 
 /**************Sidebar**************/
+.vertical__top {
+  vertical-align: top;
+}
 .sidebar__uploadbtn {
   width: 100%;
   margin-top: 1.5rem !important;
@@ -83,13 +85,16 @@ span.MuiSwitch-track.css-1yjjitx-MuiSwitch-track {
 
 .infocontainer__addbtn,
 .infocontainer__removebtn {
-  width: 60px;
-  height: 40px;
-  margin-left: 10px !important;
+  height: 40px !important;
+  margin-left: 16px !important;
 }
-
 .infocontainer__removebtn {
-  width: 100px;
+  width: 178px !important;
+}
+.infocontainer__addbtn--mr,
+.infocontainer__removebtn--mr {
+  height: 40px !important;
+  margin-right: 16px !important;
 }
 
 .infocontainer__form .infocontainer__formrow {
@@ -103,9 +108,38 @@ span.MuiSwitch-track.css-1yjjitx-MuiSwitch-track {
   justify-content: flex-start;
   align-items: center;
 }
+
 .infocontainer__skill {
   max-width: 200px;
   margin: 0 15px;
   list-style-type: initial;
   overflow-wrap: break-word;
+}
+
+.infocontainer__field {
+  margin-top: 16px !important;
+  width: 250px !important;
+}
+
+.infocontainer__workfield,
+.infocontainer__companyfield,
+.infocontainer__skillfield,
+.infocontainer__schoolfield,
+.infocontainer__degreefield,
+.infocontainer__studyfield {
+  width: 265px !important;
+}
+
+.date__menuitem {
+  width: 125px !important;
+  margin-right: 16px;
+}
+
+.infocontainer__ongoingcheck {
+  margin-top: 16px !important;
+}
+
+.infocontainer__jobdescription,
+.infocontainer__educationdescription {
+  margin-top: 32px !important;
 }

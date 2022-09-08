@@ -7,6 +7,7 @@ import { keys } from "../keys";
 const MainSidebar = (props) => {
   let [emailError, setEmailError] = useState(false);
   let [emailHelperText, setEmailHelperText] = useState("");
+
   const checkEmailValidity = (target) => {
     if (target.validity.tooShort === true) {
       setEmailError(true);
@@ -30,6 +31,7 @@ const MainSidebar = (props) => {
       setEmailHelperText("");
     }
   };
+
   const bottomRowInputsArr = [
     [
       "text",
@@ -72,12 +74,27 @@ const MainSidebar = (props) => {
     if (input[0] === "phoneNumber") {
       return (
         <MuiPhoneNumber
-          id="outlined-required"
           defaultCountry={"ro"}
           label={input[1]}
+          inputProps={{ maxLength: 12 }}
           variant="outlined"
+          error={
+            props.userPhoneNumber.length > 1 &&
+            props.userPhoneNumber.length < 12
+              ? true
+              : false
+          }
+          helperText={
+            props.userPhoneNumber.length > 1 &&
+            props.userPhoneNumber.length < 12
+              ? "Phone number too short."
+              : false
+          }
           className={input[3]}
-          onChange={(e) => input[2](e)}
+          onChange={(e) => {
+            console.log(e);
+            input[2](e);
+          }}
           key={input[4]}
         />
       );
@@ -86,10 +103,9 @@ const MainSidebar = (props) => {
       if (input[1] === "Email address") {
         return (
           <TextField
-            id="outlined-required"
             type="email"
             required
-            label={emailError ? "Error" : input[1]}
+            label={input[1]}
             inputProps={{
               minLength: 8,
               maxLength: 32,
@@ -102,7 +118,7 @@ const MainSidebar = (props) => {
                 '#root > div > main > div.sidebar.w-2\\/12.p-8 > form > div.sidebar__row.pt-8 > div.MuiFormControl-root.MuiTextField-root.\\"sidebar__email.sidebar__input.w-full.w-full\\".css-1u3bzj6-MuiFormControl-root-MuiTextField-root > div > input'
               );
               checkEmailValidity(target);
-              input[2](e);
+              input[2](e.target.value);
             }}
             className={`"${input[3]} w-full"`}
             key={input[4]}
@@ -111,10 +127,22 @@ const MainSidebar = (props) => {
       } else
         return (
           <TextField
-            id="outlined"
             required
             label={input[1]}
-            onChange={(e) => input[2](e)}
+            inputProps={{ minLength: 8 }}
+            error={
+              props.userAddress.length < 8 && props.userAddress.length >= 1
+                ? true
+                : false
+            }
+            helperText={
+              props.userAddress.length < 8 && props.userAddress.length >= 1
+                ? "Address too short."
+                : false
+            }
+            onChange={(e) => {
+              input[2](e.target.value);
+            }}
             className={`"${input[3]} w-full"`}
             key={input[4]}
           />
@@ -123,23 +151,33 @@ const MainSidebar = (props) => {
       return (
         <TextField
           inputProps={{ type: "link" }}
-          id="outlined"
           label={input[1]}
-          onChange={(e) => input[2](e)}
+          onChange={(e) => input[2](e.target.value)}
           className={`"${input[3]} w-full"`}
           key={input[4]}
         />
       );
     }
   });
+
   return (
     <div className="sidebar w-2/12 p-8">
       <form action="">
         <div className="sidebar__row">
           <TextField
             required
-            id="outlined-required"
             label="Your name"
+            inputProps={{ minLength: 6 }}
+            error={
+              props.userName.length >= 1 && props.userName.length < 6
+                ? true
+                : false
+            }
+            helperText={
+              props.userName.length >= 1 && props.userName.length < 6
+                ? "Name too short"
+                : false
+            }
             onInput={(e) => props.setUserName(e.target.value)}
             className="w-full"
           />
