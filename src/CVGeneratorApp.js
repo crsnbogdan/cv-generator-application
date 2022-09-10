@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Footer from "./Components/App/Footer/Footer";
 import Main from "./Components/App/Main/Main";
 import Nav from "./Components/App/Nav/Nav";
 
@@ -132,16 +133,7 @@ const CVGeneratorApp = () => {
         setUserEducationArr={setUserEducationArr}
         userEducationArr={userEducationArr}
       />
-
-      <button
-        onClick={() =>
-          console.log(
-            `start year: ${educationStartYear} \n end year: ${educationEndYear} \n start month: ${educationStartMonth} \n end month: ${educationEndMonth}`
-          )
-        }
-      >
-        click
-      </button>
+      <Footer />
     </div>
   );
 };

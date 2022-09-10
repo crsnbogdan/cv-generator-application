@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import uniqid from "uniqid";
 
 import Button from "@mui/material/Button";
@@ -29,6 +29,26 @@ const MainInfoContainer = (props) => {
     2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016,
     2017, 2018, 2019, 2020, 2021, 2022,
   ];
+
+  const [jobYearsErr, setJobYearsErr] = useState(false);
+  const checkIfJobYearsErr = (startYear, endYear, isOngoing) => {
+    if (startYear && !isOngoing && endYear && endYear >= startYear) {
+      return setJobYearsErr(false);
+    }
+    if (startYear && isOngoing) {
+      return setJobYearsErr(false);
+    }
+    if (startYear && !isOngoing && !endYear) {
+      return setJobYearsErr(true);
+    }
+    if (startYear && !isOngoing && endYear && startYear > endYear) {
+      return setJobYearsErr(true);
+    }
+  };
+
+  useEffect(() =>
+    checkIfJobYearsErr(props.jobStartYear, props.jobEndYear, props.jobIsOngoing)
+  );
 
   const createDateSelects = (
     isFor,
@@ -88,7 +108,8 @@ const MainInfoContainer = (props) => {
             <Select
               defaultValue=""
               required={startProps && !isOngoing ? true : false}
-              disabled={isOngoing && !label.includes("Start") ? true : false}
+              disabled={isOngoing && label.includes("End") ? true : false}
+              error={jobYearsErr}
               label={
                 label.includes("Start")
                   ? "Start year"
@@ -97,7 +118,14 @@ const MainInfoContainer = (props) => {
                   : "err"
               }
               className="date__menuitem"
-              onChange={(e) => setStateMethodSecond(e.target.value)}
+              onChange={(e) => {
+                setStateMethodSecond(e.target.value);
+                checkIfJobYearsErr(
+                  props.jobStartYear,
+                  props.jobEndYear,
+                  props.jobIsOngoing
+                );
+              }}
             >
               {yearsArr.map((yearsArr) => (
                 <MenuItem value={yearsArr} key={uniqid()} required>
@@ -252,11 +280,16 @@ const MainInfoContainer = (props) => {
             <FormControlLabel
               control={<Checkbox defaultChecked={false} />}
               className={"infocontainer__ongoingcheck"}
-              onChange={() =>
+              onChange={() => {
                 props.jobIsOngoing
                   ? props.setJobIsOngoing(false)
-                  : props.setJobIsOngoing(true)
-              }
+                  : props.setJobIsOngoing(true);
+                checkIfJobYearsErr(
+                  props.jobStartYear,
+                  props.jobEndYear,
+                  props.jobIsOngoing
+                );
+              }}
               label="Currently working in this position."
             />
             {createDateSelects(
@@ -280,6 +313,7 @@ const MainInfoContainer = (props) => {
               type="submit"
               className="infocontainer__addbtn--mr"
               onClick={() => {
+                if (jobYearsErr === true) return;
                 if (!props.jobStartYear) return;
                 if (!props.jobEndYear || !props.jobIsOngoing) return;
                 if (!props.jobCompany || !props.jobTitle) return;

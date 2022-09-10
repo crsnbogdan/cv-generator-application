@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import MuiPhoneNumber from "material-ui-phone-number";
 import React, { useState } from "react";
-import { keys } from "../keys";
+import { keys } from "./keys";
 
 const MainSidebar = (props) => {
   let [emailError, setEmailError] = useState(false);
