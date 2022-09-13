@@ -5,7 +5,7 @@ import MainSidebar from "./MainSidebar/MainSidebar";
 
 const Main = (props) => {
   return (
-    <main className="main flex relative z-0">
+    <main id="main" className="main flex relative z-0">
       <MainSidebar {...props} />
       <MainInfoContainer {...props} />
     </main>

@@ -31,24 +31,60 @@ const MainInfoContainer = (props) => {
   ];
 
   const [jobYearsErr, setJobYearsErr] = useState(false);
-  const checkIfJobYearsErr = (startYear, endYear, isOngoing) => {
-    if (startYear && !isOngoing && endYear && endYear >= startYear) {
-      return setJobYearsErr(false);
-    }
-    if (startYear && isOngoing) {
-      return setJobYearsErr(false);
-    }
-    if (startYear && !isOngoing && !endYear) {
-      return setJobYearsErr(true);
-    }
-    if (startYear && !isOngoing && endYear && startYear > endYear) {
-      return setJobYearsErr(true);
+  const [schoolYearsErr, setSchoolYearsErr] = useState(false);
+  const checkIfYearsErr = (
+    startYear,
+    endYear,
+    isOngoing,
+    changeStateMethod,
+    ignoreIsOngoing
+  ) => {
+    if (ignoreIsOngoing) {
+      if (startYear && !endYear) {
+        return changeStateMethod(true);
+      }
+      if (startYear && endYear && startYear > endYear) {
+        return changeStateMethod(true);
+      }
+      return changeStateMethod(false);
+    } else {
+      if (startYear && !isOngoing && endYear && endYear >= startYear) {
+        return changeStateMethod(false);
+      }
+      if (startYear && isOngoing) {
+        return changeStateMethod(false);
+      }
+      if (startYear && !isOngoing && !endYear) {
+        return changeStateMethod(true);
+      }
+      if (startYear && !isOngoing && endYear && startYear > endYear) {
+        return changeStateMethod(true);
+      }
     }
   };
 
-  useEffect(() =>
-    checkIfJobYearsErr(props.jobStartYear, props.jobEndYear, props.jobIsOngoing)
-  );
+  useEffect(() => {
+    checkIfYearsErr(
+      props.jobStartYear,
+      props.jobEndYear,
+      props.jobIsOngoing,
+      setJobYearsErr,
+      false
+    );
+    checkIfYearsErr(
+      props.educationStartYear,
+      props.educationEndYear,
+      null,
+      setSchoolYearsErr,
+      true
+    );
+  }, [
+    props.jobStartYear,
+    props.jobEndYear,
+    props.jobIsOngoing,
+    props.educationStartYear,
+    props.educationEndYear,
+  ]);
 
   const createDateSelects = (
     isFor,
@@ -109,7 +145,7 @@ const MainInfoContainer = (props) => {
               defaultValue=""
               required={startProps && !isOngoing ? true : false}
               disabled={isOngoing && label.includes("End") ? true : false}
-              error={jobYearsErr}
+              error={isFor.includes("Job") ? jobYearsErr : schoolYearsErr}
               label={
                 label.includes("Start")
                   ? "Start year"
@@ -120,11 +156,23 @@ const MainInfoContainer = (props) => {
               className="date__menuitem"
               onChange={(e) => {
                 setStateMethodSecond(e.target.value);
-                checkIfJobYearsErr(
-                  props.jobStartYear,
-                  props.jobEndYear,
-                  props.jobIsOngoing
-                );
+                if (isFor.includes("Job")) {
+                  return checkIfYearsErr(
+                    props.jobStartYear,
+                    props.jobEndYear,
+                    props.jobIsOngoing,
+                    setJobYearsErr,
+                    false
+                  );
+                } else {
+                  return checkIfYearsErr(
+                    props.educationStartYear,
+                    props.educationEndYear,
+                    null,
+                    setSchoolYearsErr,
+                    true
+                  );
+                }
               }}
             >
               {yearsArr.map((yearsArr) => (
@@ -189,8 +237,7 @@ const MainInfoContainer = (props) => {
                   ...props.userSkillsArr,
                   props.userSkill,
                 ]);
-                document.getElementById("outlined-required skillfield").value =
-                  "";
+                document.getElementById("skillfield").value = "";
                 props.setUserSkill([]);
               }}
             >
@@ -284,10 +331,12 @@ const MainInfoContainer = (props) => {
                 props.jobIsOngoing
                   ? props.setJobIsOngoing(false)
                   : props.setJobIsOngoing(true);
-                checkIfJobYearsErr(
+                checkIfYearsErr(
                   props.jobStartYear,
                   props.jobEndYear,
-                  props.jobIsOngoing
+                  props.jobIsOngoing,
+                  setJobYearsErr,
+                  false
                 );
               }}
               label="Currently working in this position."
@@ -315,7 +364,6 @@ const MainInfoContainer = (props) => {
               onClick={() => {
                 if (jobYearsErr === true) return;
                 if (!props.jobStartYear) return;
-                if (!props.jobEndYear || !props.jobIsOngoing) return;
                 if (!props.jobCompany || !props.jobTitle) return;
                 props.setUserJobsArr([
                   ...props.userJobsArr,
@@ -470,6 +518,7 @@ const MainInfoContainer = (props) => {
               type="submit"
               className="infocontainer__addbtn--mr"
               onClick={() => {
+                if (schoolYearsErr === true) return;
                 if (!props.educationStartYear) return;
                 if (!props.educationEndYear) return;
                 if (!props.userSchool || !props.userDegree || !props.userField)
@@ -529,7 +578,7 @@ const MainInfoContainer = (props) => {
                       ? education.startMonth + " " + education.startYear
                       : education.startYear}
                     {" - "}
-                    {education.endMonth === true
+                    {education.endMonth
                       ? education.endMonth + " " + education.endYear
                       : education.endYear}
                   </p>

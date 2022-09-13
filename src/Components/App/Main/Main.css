@@ -1,6 +1,13 @@
 /**************Main**************/
 .main {
   max-width: 100vw;
+  filter: blur(0);
+  transition-duration: 250ms;
+}
+
+.blurred {
+  filter: blur(4px);
+  pointer-events: none;
 }
 
 .main__sidebar,

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CVPreview from "./Components/App/CVPreview/CVPreview";
 import Footer from "./Components/App/Footer/Footer";
 import Main from "./Components/App/Main/Main";
 import Nav from "./Components/App/Nav/Nav";
@@ -37,21 +38,7 @@ const CVGeneratorApp = () => {
   const [jobEndYear, setJobEndYear] = useState("");
   const [jobDescription, setjobDescription] = useState("");
 
-  const [userJobsArr, setUserJobsArr] = useState([
-    {
-      title: "Sales Manager",
-      company: "Google",
-      startMonth: "March",
-      startYear: 2017,
-
-      isOngoing: true,
-      endMonth: "",
-      endYear: "",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium tempora quibusdam inventore praesentium officia. Impedit alias corporis ut quia velit provident odit, repellat iure expedita error, quo saepe libero laborum.",
-      key: 123,
-    },
-  ]);
+  const [userJobsArr, setUserJobsArr] = useState([]);
 
   const [userSchool, setUserSchool] = useState("");
   const [userDegree, setUserDegree] = useState("");
@@ -61,24 +48,26 @@ const CVGeneratorApp = () => {
   const [educationStartYear, setEducationStartYear] = useState("");
   const [educationEndMonth, setEducationEndMonth] = useState("");
   const [educationEndYear, setEducationEndYear] = useState("");
-  const [userEducationArr, setUserEducationArr] = useState([
-    {
-      school: "University of Bucharest",
-      degree: "Masters",
-      field: "Chemistry",
-      startMonth: "October",
-      startYear: 2018,
-      endMonth: "July",
-      endYear: 2020,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi maxime est ullam, rem asperiores perspiciatis?",
-      key: 456,
-    },
-  ]);
+  const [userEducationArr, setUserEducationArr] = useState([]);
 
   return (
     <div className="CVGeneratorApp relative">
       <Nav updateEditMode={updateMode} isEditing={editMode} />
+      {editMode === false ? (
+        <CVPreview
+          userName={userName}
+          userImg={userImg}
+          userPhoneNumber={userPhoneNumber}
+          userEmail={userEmail}
+          userLinkedin={userLinkedin}
+          userGithub={userGithub}
+          userAddress={userAddress}
+          userDescription={userDescription}
+          userSkillsArr={userSkillsArr}
+          userJobsArr={userJobsArr}
+          userEducationArr={userEducationArr}
+        />
+      ) : null}
       <Main
         userImg={userImg}
         setUserImg={updateUserImg}

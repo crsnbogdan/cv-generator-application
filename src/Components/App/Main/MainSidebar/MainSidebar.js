@@ -206,7 +206,7 @@ const MainSidebar = (props) => {
           )}
         </div>
         <div className="sidebar__row pt-8">
-          <h3 className="sidebar__heading text-lg mb">Contact information:</h3>
+          <h3 className="sidebar__heading text-lg">Contact information:</h3>
           {bottomRowInputs}
         </div>
       </form>
