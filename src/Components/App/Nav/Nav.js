@@ -1,41 +1,28 @@
-import React, { Component } from "react";
-import "./Nav.css";
-class Nav extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <div
-        id="nav"
-        className="nav z-40 flex justify-between items-center px-20 bg-white"
-      >
-        {this.props.mode === "editing" ? (
-          <div className="navtext">
-            <h1 className="font-bold text-3xl text-blue-400">CV Generator</h1>
-            <p className="my-1 text-lg text-gray-400">Currently editing</p>
-          </div>
-        ) : (
-          <div className="navtext">
-            <h1 className="font-bold text-3xl text-gray-400">CV Generator</h1>
-            <p className="my-1 text-lg text-blue-400">Currently previewing</p>
-          </div>
-        )}
+import Switch from "@mui/material/Switch";
+import React from "react";
 
-        {this.props.mode === "previewing" ? (
-          <a href="#footer-downloadbtn" className="text-blue-400">
-            Go to print
-          </a>
-        ) : null}
-        <div className="modetoggle">
-          <input type="checkbox" id="switch" onChange={this.props.switchMode} />
-          <label htmlFor="switch" className="switchLabel">
-            Toggle
-          </label>
+const Nav = (props) => {
+  return (
+    <nav className="nav bg-white flex justify-between px-20 py-5 items-center sticky top-0 z-50">
+      {props.isEditing ? (
+        <div className="nav__textcontainer">
+          <h1 className="font-bold text-3xl text-blue-400">CV Generator</h1>
+          <p className="my-1 text-lg text-slate-300">Currently editing</p>
         </div>
-      </div>
-    );
-  }
-}
+      ) : (
+        <div className="nav__textcontainer">
+          <h1 className="font-bold text-3xl text-slate-300">CV Generator</h1>
+          <p className="my-1 text-lg text-blue-400">Currently previewing</p>
+        </div>
+      )}
+      {props.isEditing === false ? (
+        <a href="#footer__downloadbtn" className="text-blue-400">
+          Go to print
+        </a>
+      ) : null}
+      <Switch onClick={props.updateEditMode} className="mr-16 color-blue-400" />
+    </nav>
+  );
+};
 
 export default Nav;
