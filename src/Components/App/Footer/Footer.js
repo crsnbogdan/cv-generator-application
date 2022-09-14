@@ -3,7 +3,7 @@ import React from "react";
 const Footer = (props) => {
   return props.isForCV === true ? (
     <footer className="cv__footer flex align-center justify-center mb-4">
-      <p className="footer--text text-lg">
+      <p className="text-lg">
         <span className="text-blue-400">© {new Date().getFullYear()}</span> -
         Crisan Bogdan
       </p>
@@ -11,7 +11,7 @@ const Footer = (props) => {
   ) : (
     <footer className="footer flex align-center justify-center p-10">
       <div className="inline-flex flex-col">
-        <p className="footer--text text-lg">
+        <p className="text-lg">
           <span className="text-blue-400">© {new Date().getFullYear()}</span> -
           Crisan Bogdan
         </p>

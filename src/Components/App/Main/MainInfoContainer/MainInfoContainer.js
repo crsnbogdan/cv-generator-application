@@ -1,29 +1,28 @@
-import React, { useEffect, useState } from "react";
-import uniqid from "uniqid";
-
-import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import TextField from "@mui/material/TextField";
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
+import React, { useEffect, useState } from 'react';
+import uniqid from 'uniqid';
 
 const MainInfoContainer = (props) => {
   const monthsArr = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
   const yearsArr = [
     2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016,
@@ -32,6 +31,7 @@ const MainInfoContainer = (props) => {
 
   const [jobYearsErr, setJobYearsErr] = useState(false);
   const [schoolYearsErr, setSchoolYearsErr] = useState(false);
+
   const checkIfYearsErr = (
     startYear,
     endYear,
@@ -93,29 +93,31 @@ const MainInfoContainer = (props) => {
     isOngoing,
     startProps
   ) => {
-    let label = "";
-    if (isFor === "startJob" || isFor === "startSchool") label = "Start date";
-    if (isFor === "endJob" || isFor === "endSchool") label = "End date";
+    let label = '';
+    if (isFor === 'startJob' || isFor === 'startSchool') label = 'Start date';
+    if (isFor === 'endJob' || isFor === 'endSchool') label = 'End date';
+
     return (
-      <div className="infocontainer__row--nooutline mt-4">
-        <div className="infocontainer__flexcontainer flex">
-          <div className="infocontainer__container">
+      <div className="mt-4">
+        <div className="flex">
+          <div>
             <InputLabel>
-              {label.includes("Start")
-                ? "Start month"
-                : label.includes("End")
-                ? "End month"
-                : "err"}
+              {label.includes('Start')
+                ? 'Start month'
+                : label.includes('End')
+                ? 'End month'
+                : 'err'}
             </InputLabel>
+
             <Select
               defaultValue=""
-              disabled={isOngoing && !label.includes("Start") ? true : false}
+              disabled={isOngoing && !label.includes('Start') ? true : false}
               label={
-                label.includes("start")
-                  ? "Start month"
-                  : label.includes("end")
-                  ? "End month"
-                  : "err"
+                label.includes('start')
+                  ? 'Start month'
+                  : label.includes('end')
+                  ? 'End month'
+                  : 'err'
               }
               className="date__menuitem"
               onChange={(e) => setStateMethodFirst(e.target.value)}
@@ -133,30 +135,31 @@ const MainInfoContainer = (props) => {
               })}
             </Select>
           </div>
-          <div className="infocontainer__flexcontainer flex flex-col">
+          <div className="flex flex-col">
             <InputLabel>
-              {label.includes("Start")
-                ? "Start year"
-                : label.includes("End")
-                ? "End year"
-                : "err"}
+              {label.includes('Start')
+                ? 'Start year'
+                : label.includes('End')
+                ? 'End year'
+                : 'err'}
             </InputLabel>
+
             <Select
               defaultValue=""
               required={startProps && !isOngoing ? true : false}
-              disabled={isOngoing && label.includes("End") ? true : false}
-              error={isFor.includes("Job") ? jobYearsErr : schoolYearsErr}
+              disabled={isOngoing && label.includes('End') ? true : false}
+              error={isFor.includes('Job') ? jobYearsErr : schoolYearsErr}
               label={
-                label.includes("Start")
-                  ? "Start year"
-                  : label.includes("End")
-                  ? "End year"
-                  : "err"
+                label.includes('Start')
+                  ? 'Start year'
+                  : label.includes('End')
+                  ? 'End year'
+                  : 'err'
               }
               className="date__menuitem"
               onChange={(e) => {
                 setStateMethodSecond(e.target.value);
-                if (isFor.includes("Job")) {
+                if (isFor.includes('Job')) {
                   return checkIfYearsErr(
                     props.jobStartYear,
                     props.jobEndYear,
@@ -190,7 +193,7 @@ const MainInfoContainer = (props) => {
   return (
     <div className="infocontainer w-10/12 bg-slate-100 p-9">
       <div className="infocontainer__row bg-white p-4 rounded-lg">
-        <h3 className="infocontainer__heading text-lg mb-4">About:</h3>
+        <h3 className="text-lg mb-4">About:</h3>
         <TextField
           label="About"
           rows={3}
@@ -221,12 +224,13 @@ const MainInfoContainer = (props) => {
                   ? false
                   : props.userSkill[0].length > 0 &&
                     props.userSkill[0].length < 3
-                  ? "Too short."
+                  ? 'Too short.'
                   : false
               }
               inputProps={{ maxLength: 40, minLength: 3 }}
               onChange={(e) => props.setUserSkill([e.target.value])}
             />
+
             <Button
               variant="contained"
               className="infocontainer__addbtn"
@@ -237,12 +241,13 @@ const MainInfoContainer = (props) => {
                   ...props.userSkillsArr,
                   props.userSkill,
                 ]);
-                document.getElementById("skillfield").value = "";
+                document.getElementById('skillfield').value = '';
                 props.setUserSkill([]);
               }}
             >
               Add
             </Button>
+
             <Button
               variant="contained"
               className="infocontainer__removebtn"
@@ -256,6 +261,7 @@ const MainInfoContainer = (props) => {
             </Button>
           </div>
         </form>
+
         {props.userSkillsArr.length > 0 ? (
           <div className="infocontainer__row mb-4 bg-white p-4 rounded-lg mt-6">
             <ul className="infocontainer__skills px-9 py-2">
@@ -271,9 +277,7 @@ const MainInfoContainer = (props) => {
         ) : null}
       </div>
       <div className="infocontainer__row bg-white p-4 mt-12 rounded-lg">
-        <h3 className="infocontainer__heading text-lg mb-4">
-          Work experience:
-        </h3>
+        <h3 className="text-lg mb-4">Work experience:</h3>
         <form
           id="jobForm"
           className="infocontainer__form flex flex-col"
@@ -289,7 +293,7 @@ const MainInfoContainer = (props) => {
             }
             helperText={
               props.jobTitle.length > 0 && props.jobTitle.length < 3
-                ? "Too short"
+                ? 'Too short'
                 : false
             }
             placeholder="Ex: Sales Manager"
@@ -297,6 +301,7 @@ const MainInfoContainer = (props) => {
             onChange={(e) => props.setJobTitle(e.target.value)}
             inputProps={{ maxLength: 40, minLength: 3 }}
           />
+
           <TextField
             label="Company"
             error={
@@ -306,7 +311,7 @@ const MainInfoContainer = (props) => {
             }
             helperText={
               props.jobCompany.length > 0 && props.jobCompany.length < 3
-                ? "Too short"
+                ? 'Too short'
                 : false
             }
             placeholder="Ex: Google"
@@ -317,16 +322,17 @@ const MainInfoContainer = (props) => {
           />
 
           {createDateSelects(
-            "startJob",
+            'startJob',
             props.setJobStartMonth,
             props.setJobStartYear,
             props.jobIsOngoing,
             props.jobStartYear
           )}
+
           <FormGroup>
             <FormControlLabel
               control={<Checkbox defaultChecked={false} />}
-              className={"infocontainer__ongoingcheck"}
+              className={'infocontainer__ongoingcheck'}
               onChange={() => {
                 props.jobIsOngoing
                   ? props.setJobIsOngoing(false)
@@ -341,8 +347,9 @@ const MainInfoContainer = (props) => {
               }}
               label="Currently working in this position."
             />
+
             {createDateSelects(
-              "endJob",
+              'endJob',
               props.setJobEndMonth,
               props.setJobEndYear,
               props.jobIsOngoing,
@@ -356,6 +363,7 @@ const MainInfoContainer = (props) => {
             multiline
             onChange={(e) => props.setjobDescription(e.target.value)}
           />
+
           <div className="infocontainer__flexrow flex mt-6">
             <Button
               variant="contained"
@@ -379,11 +387,12 @@ const MainInfoContainer = (props) => {
                     key: uniqid(),
                   },
                 ]);
-                document.getElementById("jobForm").reset();
+                document.getElementById('jobForm').reset();
               }}
             >
               Add
             </Button>
+
             <Button
               variant="contained"
               className="infocontainer__removebtn-mr"
@@ -412,13 +421,13 @@ const MainInfoContainer = (props) => {
                   </p>
                   <p className="text-gray-400 my-1">
                     {job.startMonth
-                      ? job.startMonth + " " + job.startYear
+                      ? job.startMonth + ' ' + job.startYear
                       : job.startYear}
-                    {" - "}
+                    {' - '}
                     {job.isOngoing
-                      ? "Present"
+                      ? 'Present'
                       : job.endMonth === true
-                      ? job.endMonth + " " + job.endYear
+                      ? job.endMonth + ' ' + job.endYear
                       : job.endYear}
                   </p>
                   <p>{job.description}</p>
@@ -429,7 +438,7 @@ const MainInfoContainer = (props) => {
         ) : null}
       </div>
       <div className="infocontainer__row bg-white p-4 mt-12 rounded-lg">
-        <h3 className="infocontainer__heading text-lg mb-4">Education:</h3>
+        <h3 className="text-lg mb-4">Education:</h3>
         <form
           id="educationForm"
           className="infocontainer__form flex flex-col"
@@ -445,7 +454,7 @@ const MainInfoContainer = (props) => {
             }
             helperText={
               props.userSchool.length > 0 && props.userSchool.length < 3
-                ? "Too short"
+                ? 'Too short'
                 : false
             }
             placeholder="Ex: Bucharest University"
@@ -453,6 +462,7 @@ const MainInfoContainer = (props) => {
             onChange={(e) => props.setUserSchool(e.target.value)}
             inputProps={{ maxLength: 40, minLength: 3 }}
           />
+
           <TextField
             label="Degree"
             error={
@@ -462,7 +472,7 @@ const MainInfoContainer = (props) => {
             }
             helperText={
               props.userDegree.length > 0 && props.userDegree.length < 3
-                ? "Too short"
+                ? 'Too short'
                 : false
             }
             placeholder="Ex: Bachelors"
@@ -471,6 +481,7 @@ const MainInfoContainer = (props) => {
             onChange={(e) => props.setUserDegree(e.target.value)}
             inputProps={{ maxLength: 40, minLength: 3 }}
           />
+
           <TextField
             label="Field"
             error={
@@ -480,7 +491,7 @@ const MainInfoContainer = (props) => {
             }
             helperText={
               props.userField.length > 0 && props.userField.length < 3
-                ? "Too short"
+                ? 'Too short'
                 : false
             }
             placeholder="Ex: Chemistry"
@@ -491,7 +502,7 @@ const MainInfoContainer = (props) => {
           />
 
           {createDateSelects(
-            "startSchool",
+            'startSchool',
             props.setEducationStartMonth,
             props.setEducationStartYear,
             null,
@@ -499,12 +510,13 @@ const MainInfoContainer = (props) => {
           )}
 
           {createDateSelects(
-            "endSchool",
+            'endSchool',
             props.setEducationEndMonth,
             props.setEducationEndYear,
             null,
             props.educationStartYear
           )}
+
           <TextField
             label="Description"
             rows={3}
@@ -537,11 +549,12 @@ const MainInfoContainer = (props) => {
                     key: uniqid(),
                   },
                 ]);
-                document.getElementById("educationForm").reset();
+                document.getElementById('educationForm').reset();
               }}
             >
               Add
             </Button>
+
             <Button
               variant="contained"
               className="infocontainer__removebtn-mr"
@@ -575,11 +588,11 @@ const MainInfoContainer = (props) => {
                   </p>
                   <p className="text-gray-400 my-1">
                     {education.startMonth
-                      ? education.startMonth + " " + education.startYear
+                      ? education.startMonth + ' ' + education.startYear
                       : education.startYear}
-                    {" - "}
+                    {' - '}
                     {education.endMonth
-                      ? education.endMonth + " " + education.endYear
+                      ? education.endMonth + ' ' + education.endYear
                       : education.endYear}
                   </p>
                   <p>{education.description}</p>

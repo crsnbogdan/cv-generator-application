@@ -1,80 +1,81 @@
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import MuiPhoneNumber from "material-ui-phone-number";
-import React, { useState } from "react";
-import { keys } from "./keys";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import MuiPhoneNumber from 'material-ui-phone-number';
+import React, { useState } from 'react';
+import { keys } from './sidebarInputKeys';
 
 const MainSidebar = (props) => {
   let [emailError, setEmailError] = useState(false);
-  let [emailHelperText, setEmailHelperText] = useState("");
+  let [emailHelperText, setEmailHelperText] = useState('');
 
   const checkEmailValidity = (target) => {
     if (target.validity.tooShort === true) {
       setEmailError(true);
-      return setEmailHelperText("Email address too short.");
+      return setEmailHelperText('Email address too short.');
     } else if (target.validity.tooShort === false) {
       setEmailError(false);
-      setEmailHelperText("");
+      setEmailHelperText('');
     }
     if (target.validity.tooLong === true) {
       setEmailError(true);
-      return setEmailHelperText("Email address too long.");
+      return setEmailHelperText('Email address too long.');
     } else if (target.validity.tooLong === false) {
       setEmailError(false);
-      setEmailHelperText("");
+      setEmailHelperText('');
     }
     if (target.validity.patternMismatch === true) {
       setEmailError(true);
-      return setEmailHelperText("Invalid email address.");
+      return setEmailHelperText('Invalid email address.');
     } else if (target.validity.patternMismatch === false) {
       setEmailError(false);
-      setEmailHelperText("");
+      setEmailHelperText('');
     }
   };
 
   const bottomRowInputsArr = [
     [
-      "text",
-      "Email address",
+      'text',
+      'Email address',
       props.setUserEmail,
-      "sidebar__email sidebar__input w-full",
+      'sidebar__email sidebar__input w-full',
       keys.sidebar.userEmailKey,
     ],
     [
-      "text",
-      "Address",
+      'text',
+      'Address',
       props.setUserAddress,
-      "sidebar__address sidebar__input w-full",
+      'sidebar__address sidebar__input w-full',
       keys.sidebar.userAddressKey,
     ],
     [
-      "phoneNumber",
-      "Phone number *",
+      'phoneNumber',
+      'Phone number *',
       props.setUserPhoneNumber,
-      "sidebar__phonenumber sidebar__input w-full",
+      'sidebar__phonenumber sidebar__input w-full',
       keys.sidebar.userPhoneNumberKey,
     ],
 
     [
-      "text",
-      "LinkedIn",
+      'text',
+      'LinkedIn',
       props.setUserLinkedin,
-      "sidebar__linkedin sidebar__input w-full",
+      'sidebar__linkedin sidebar__input w-full',
       keys.sidebar.userLinkedinKey,
     ],
     [
-      "text",
-      "GitHub",
+      'text',
+      'GitHub',
       props.setUserGithub,
-      "sidebar__github sidebar__input w-full",
+      'sidebar__github sidebar__input w-full',
       keys.sidebar.userGithubKey,
     ],
   ];
+
   const bottomRowInputs = bottomRowInputsArr.map((input) => {
-    if (input[0] === "phoneNumber") {
+    if (input[0] === 'phoneNumber') {
       return (
         <MuiPhoneNumber
-          defaultCountry={"ro"}
+          defaultCountry={'ro'}
           label={input[1]}
           inputProps={{ maxLength: 12 }}
           variant="outlined"
@@ -87,7 +88,7 @@ const MainSidebar = (props) => {
           helperText={
             props.userPhoneNumber.length > 1 &&
             props.userPhoneNumber.length < 12
-              ? "Phone number too short."
+              ? 'Phone number too short.'
               : false
           }
           className={input[3]}
@@ -98,9 +99,9 @@ const MainSidebar = (props) => {
           key={input[4]}
         />
       );
-    } else if (input[1] === "Email address" || input[1] === "Address") {
+    } else if (input[1] === 'Email address' || input[1] === 'Address') {
       // conditional used to separate the required from non-required fields and add email validation
-      if (input[1] === "Email address") {
+      if (input[1] === 'Email address') {
         return (
           <TextField
             type="email"
@@ -109,7 +110,7 @@ const MainSidebar = (props) => {
             inputProps={{
               minLength: 8,
               maxLength: 32,
-              pattern: "^(.+)@(.+)$",
+              pattern: '^(.+)@(.+)$',
             }}
             error={emailError}
             helperText={emailError ? emailHelperText : false}
@@ -137,7 +138,7 @@ const MainSidebar = (props) => {
             }
             helperText={
               props.userAddress.length < 8 && props.userAddress.length >= 1
-                ? "Address too short."
+                ? 'Address too short.'
                 : false
             }
             onChange={(e) => {
@@ -150,7 +151,7 @@ const MainSidebar = (props) => {
     } else {
       return (
         <TextField
-          inputProps={{ type: "link" }}
+          inputProps={{ type: 'link' }}
           label={input[1]}
           onChange={(e) => input[2](e.target.value)}
           className={`"${input[3]} w-full"`}
@@ -162,25 +163,26 @@ const MainSidebar = (props) => {
 
   return (
     <div className="sidebar w-2/12 p-8">
-      <form action="">
-        <div className="sidebar__row">
+      <form>
+        <div>
           <TextField
             required
             label="Your name"
             inputProps={{ minLength: 6 }}
             error={
-              props.userName.length >= 1 && props.userName.length < 6
+              props.userName.length > 0 && props.userName.length < 6
                 ? true
                 : false
             }
             helperText={
-              props.userName.length >= 1 && props.userName.length < 6
-                ? "Name too short"
+              props.userName.length > 0 && props.userName.length < 6
+                ? 'Name too short'
                 : false
             }
             onInput={(e) => props.setUserName(e.target.value)}
             className="w-full"
           />
+
           <Button
             variant="contained"
             component="label"
@@ -205,7 +207,7 @@ const MainSidebar = (props) => {
             />
           )}
         </div>
-        <div className="sidebar__row pt-8">
+        <div className="pt-8">
           <h3 className="sidebar__heading text-lg">Contact information:</h3>
           {bottomRowInputs}
         </div>

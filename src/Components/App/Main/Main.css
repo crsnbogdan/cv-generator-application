@@ -29,6 +29,7 @@ span.MuiTouchRipple-root.css-8je8zh-MuiTouchRipple-root,
 .vertical__top {
   vertical-align: top;
 }
+
 .sidebar__uploadbtn {
   width: 100%;
   margin-top: 1.5rem !important;
@@ -68,6 +69,7 @@ span.MuiSwitch-track.css-1yjjitx-MuiSwitch-track {
   color: red !important;
   position: relative;
 }
+
 .invalidemail::after {
   content: "" !important;
   position: absolute !important;

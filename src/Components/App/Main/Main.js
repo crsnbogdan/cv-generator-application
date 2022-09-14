@@ -1,7 +1,7 @@
-import React from "react";
-import "./Main.css";
-import MainInfoContainer from "./MainInfoContainer/MainInfoContainer";
-import MainSidebar from "./MainSidebar/MainSidebar";
+import React from 'react';
+import './Main.css';
+import MainInfoContainer from './MainInfoContainer/MainInfoContainer';
+import MainSidebar from './MainSidebar/MainSidebar';
 
 const Main = (props) => {
   return (

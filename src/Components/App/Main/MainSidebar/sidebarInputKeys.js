@@ -1,4 +1,4 @@
-import uniqid from "uniqid";
+import uniqid from 'uniqid';
 
 export const keys = {
   sidebar: {
