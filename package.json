@@ -56,5 +56,16 @@
     "autoprefixer": "^10.4.8",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
+  },
+  "description": "TITLE: CV Generator App",
+  "main": "postcss.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crsnbogdan/cv-generator-application.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crsnbogdan/cv-generator-application/issues"
   }
 }

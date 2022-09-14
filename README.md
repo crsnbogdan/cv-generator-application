@@ -1,6 +1,6 @@
 TITLE: CV Generator App
 
-VERSION NUMBER: 2.0
+VERSION NUMBER: 2.1
 
 DESCRIPTION: This application was developed with the purpose of creating a simple an straight-forward means to create CVs based on user input. At the core of the application sits React, with its state and props being fundamental to the project. The goal was to allow dynamic generation of a CV based on user input, only locking the user in once the print button was clicked.
 

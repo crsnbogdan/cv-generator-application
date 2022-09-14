@@ -15,11 +15,7 @@ const Nav = (props) => {
           <p className="my-1 text-lg text-blue-400">Currently previewing</p>
         </div>
       )}
-      {props.isEditing === false ? (
-        <a href="#footer__downloadbtn" className="text-blue-400">
-          Go to print
-        </a>
-      ) : null}
+
       <Switch onClick={props.updateEditMode} className="mr-16 color-blue-400" />
     </nav>
   );
