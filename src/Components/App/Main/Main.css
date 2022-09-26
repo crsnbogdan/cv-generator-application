@@ -40,7 +40,6 @@ span.MuiTouchRipple-root.css-8je8zh-MuiTouchRipple-root,
 .sidebar__imgcontainer {
   width: 180px;
   height: 180px;
-  background-image: url(../../../Files/profilePic.png);
   background-size: 100%;
   background-position: center;
 }
@@ -51,6 +50,11 @@ span.MuiTouchRipple-root.css-8je8zh-MuiTouchRipple-root,
 
 .sidebar__phonenumber {
   margin-bottom: 32px !important;
+}
+
+.sidebar__phonenumber svg {
+  height: 10px;
+  width: auto;
 }
 
 .sidebar__phonenumber > svg {

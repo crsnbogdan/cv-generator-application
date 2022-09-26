@@ -32,15 +32,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.js src/**/*.js"
+    "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+
   "browserslist": {
     "production": [
       ">0.2%",
@@ -55,8 +49,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
-    "eslint": "^8.23.1",
-    "eslint-plugin-react": "^7.31.8",
+
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
   },
